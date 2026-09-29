@@ -12,7 +12,7 @@
   <style>
     :root {
       --bg: #090a0f;
-      --card-bg: rgba(18, 20, 29, 0.65);
+      --card-bg: rgba(18, 20, 29, 0.7);
       --card-border: rgba(255, 255, 255, 0.08);
       --card-hover-border: rgba(255, 255, 255, 0.22);
       --text-main: #f8fafc;
@@ -45,7 +45,7 @@
       justify-content: flex-start;
       position: relative;
       overflow-x: hidden;
-      padding: 30px 16px 40px;
+      padding: 24px 16px 36px;
     }
 
     #bg-canvas {
@@ -59,13 +59,13 @@
 
     .ambient-glow {
       position: fixed;
-      width: 500px;
-      height: 500px;
+      width: 450px;
+      height: 450px;
       border-radius: 50%;
       filter: blur(140px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.18;
+      opacity: 0.16;
     }
     .glow-1 {
       top: -150px;
@@ -81,7 +81,7 @@
 
     .container {
       width: 100%;
-      max-width: 540px;
+      max-width: 520px;
       position: relative;
       z-index: 10;
       display: flex;
@@ -95,7 +95,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .badge-status {
@@ -155,14 +155,14 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .avatar-wrapper {
       position: relative;
-      width: 104px;
-      height: 104px;
-      margin-bottom: 14px;
+      width: 98px;
+      height: 98px;
+      margin-bottom: 12px;
     }
 
     .avatar-ring {
@@ -195,8 +195,8 @@
       position: absolute;
       bottom: 2px;
       right: 2px;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: #090a0f;
       display: flex;
@@ -208,7 +208,7 @@
 
     .artist-name {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.1rem;
+      font-size: 2rem;
       font-weight: 800;
       letter-spacing: 0.03em;
       line-height: 1.1;
@@ -226,28 +226,37 @@
     }
 
     .artist-roles {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-top: 6px;
     }
 
-    /* Links Bento */
+    /* Links Grid: на телефонах 1 колонка, на ПК 2 колонки */
     .links-grid {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 10px;
+    }
+
+    @media (min-width: 520px) {
+      .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .card-full {
+        grid-column: 1 / -1;
+      }
     }
 
     .card {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
+      gap: 13px;
+      padding: 13px 15px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 15px;
@@ -256,28 +265,14 @@
       text-decoration: none;
       color: var(--text-main);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: var(--card-hover-border);
     }
     .card:active {
-      transform: translateY(-1px) scale(0.99);
-    }
-
-    .card-full {
-      grid-column: 1 / -1;
+      transform: scale(0.99);
     }
 
     .icon-box {
@@ -291,7 +286,7 @@
       transition: transform 0.25s ease;
     }
     .card:hover .icon-box {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
 
     .card-content {
@@ -302,25 +297,20 @@
     .card-title-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .card-title {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .card-desc {
-      font-size: 0.71rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
-      margin-top: 1px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-top: 2px;
     }
 
     .card-badge {
@@ -328,8 +318,8 @@
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 4px;
+      padding: 2px 7px;
+      border-radius: 5px;
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
@@ -344,8 +334,7 @@
       transform: translateX(3px);
     }
 
-    /* Card Specifics */
-    /* 1. Yandex Music */
+    /* Стилизация отдельных карточек */
     .card-ym {
       background: linear-gradient(100deg, rgba(255, 51, 75, 0.16), rgba(18, 20, 29, 0.85));
       border-color: rgba(255, 51, 75, 0.35);
@@ -360,82 +349,46 @@
       border: 1px solid rgba(255, 51, 75, 0.5);
       color: #ff99a8;
     }
-    .card-ym:hover {
-      box-shadow: 0 8px 25px rgba(255, 51, 75, 0.25);
-      border-color: rgba(255, 51, 75, 0.65);
-    }
 
-    /* 2. TG Channel */
     .card-tg .icon-box {
       background: rgba(42, 171, 238, 0.14);
       color: var(--accent-tg);
       border: 1px solid rgba(42, 171, 238, 0.25);
     }
-    .card-tg:hover {
-      border-color: rgba(42, 171, 238, 0.45);
-      box-shadow: 0 6px 20px rgba(42, 171, 238, 0.15);
-    }
 
-    /* 3. TG PM */
     .card-tgpm .icon-box {
       background: rgba(0, 136, 204, 0.14);
       color: var(--accent-tg-pm);
       border: 1px solid rgba(0, 136, 204, 0.25);
     }
-    .card-tgpm:hover {
-      border-color: rgba(0, 136, 204, 0.45);
-      box-shadow: 0 6px 20px rgba(0, 136, 204, 0.15);
-    }
 
-    /* 4. VK */
     .card-vk .icon-box {
       background: rgba(0, 119, 255, 0.14);
       color: var(--accent-vk);
       border: 1px solid rgba(0, 119, 255, 0.25);
     }
-    .card-vk:hover {
-      border-color: rgba(0, 119, 255, 0.45);
-      box-shadow: 0 6px 20px rgba(0, 119, 255, 0.15);
-    }
 
-    /* 5. YouTube */
     .card-yt .icon-box {
       background: rgba(255, 0, 51, 0.14);
       color: var(--accent-yt);
       border: 1px solid rgba(255, 0, 51, 0.25);
     }
-    .card-yt:hover {
-      border-color: rgba(255, 0, 51, 0.45);
-      box-shadow: 0 6px 20px rgba(255, 0, 51, 0.15);
-    }
 
-    /* 6. Instagram */
     .card-inst .icon-box {
       background: rgba(225, 48, 108, 0.14);
       color: var(--accent-inst);
       border: 1px solid rgba(225, 48, 108, 0.25);
     }
-    .card-inst:hover {
-      border-color: rgba(225, 48, 108, 0.45);
-      box-shadow: 0 6px 20px rgba(225, 48, 108, 0.15);
-    }
 
-    /* 7. TG Private */
     .card-priv .icon-box {
       background: rgba(168, 85, 247, 0.14);
       color: var(--accent-priv);
       border: 1px solid rgba(168, 85, 247, 0.25);
     }
-    .card-priv:hover {
-      border-color: rgba(168, 85, 247, 0.45);
-      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.2);
-    }
 
-    /* 8. Fandom Wiki (VIP Full-width) */
     .card-wiki {
-      background: linear-gradient(110deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.07), rgba(18, 20, 29, 0.9));
+      background: linear-gradient(110deg, rgba(16, 185, 129, 0.14), rgba(6, 182, 212, 0.08), rgba(18, 20, 29, 0.9));
       border: 1px solid rgba(16, 185, 129, 0.35);
-      position: relative;
     }
     .card-wiki .icon-box {
       background: linear-gradient(135deg, #10b981, #06b6d4);
@@ -447,12 +400,7 @@
       border: 1px solid rgba(16, 185, 129, 0.4);
       color: #6ee7b7;
     }
-    .card-wiki:hover {
-      border-color: rgba(16, 185, 129, 0.65);
-      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.22);
-    }
 
-    /* Footer */
     footer {
       margin-top: 26px;
       font-size: 0.72rem;
@@ -461,7 +409,6 @@
       text-align: center;
     }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -484,26 +431,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 24px 12px 34px;
-      }
-      .links-grid {
-        gap: 8px;
-      }
-      .card {
-        padding: 12px 10px;
-        gap: 10px;
-      }
-      .icon-box {
-        width: 38px;
-        height: 38px;
-      }
-      .artist-name {
-        font-size: 1.85rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -514,7 +441,6 @@
 
   <main class="container">
     
-    <!-- Top Action Bar -->
     <header class="top-actions">
       <div class="badge-status">
         <span class="status-dot"></span>
@@ -531,7 +457,6 @@
       </button>
     </header>
 
-    <!-- Profile Area -->
     <section class="profile">
       <div class="avatar-wrapper">
         <div class="avatar-ring"></div>
@@ -547,10 +472,9 @@
       <p class="artist-roles">DEVELOPER • RAPPER • BLOGGER</p>
     </section>
 
-    <!-- Links Grid -->
     <section class="links-grid">
       
-      <!-- 1. Yandex Music (Full) -->
+      <!-- 1. Yandex Music -->
       <a href="https://music.yandex.ru/artist/25966786?utm_source=desktop&utm_medium=copy_link" target="_blank" rel="noopener noreferrer" class="card card-full card-ym">
         <div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -562,7 +486,7 @@
             <span class="card-title">Яндекс Музыка</span>
             <span class="card-badge">New Tracks</span>
           </div>
-          <div class="card-desc">Слушать все официальные релизы и треки</div>
+          <div class="card-desc">Слушать все релизы и треки</div>
         </div>
         <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
@@ -580,7 +504,7 @@
           <div class="card-title">Telegram channel</div>
           <div class="card-desc">Личный блог</div>
         </div>
-        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -596,7 +520,7 @@
           <div class="card-title">Telegram Личка</div>
           <div class="card-desc">Личка & связь</div>
         </div>
-        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -612,7 +536,7 @@
           <div class="card-title">VK Личка</div>
           <div class="card-desc">Связь ВКонтакте</div>
         </div>
-        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -628,7 +552,7 @@
           <div class="card-title">YouTube</div>
           <div class="card-desc">Клипы & треки</div>
         </div>
-        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -644,7 +568,7 @@
           <div class="card-title">Instagram</div>
           <div class="card-desc">Фото & сторис</div>
         </div>
-        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -661,12 +585,12 @@
           <div class="card-title">Telegram Приват</div>
           <div class="card-desc">Общение & друзья</div>
         </div>
-        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
-      <!-- 8. Official Wiki Page (Full VIP) -->
+      <!-- 8. Fandom Wiki -->
       <a href="https://sene44.fandom.com/ru/wiki/Sene44_Вики" target="_blank" rel="noopener noreferrer" class="card card-full card-wiki">
         <div class="icon-box">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -678,7 +602,7 @@
             <span class="card-title">Official Fandom Wiki</span>
             <span class="card-badge">VERIFIED LORE ★</span>
           </div>
-          <div class="card-desc">Официальная энциклопедия, биография & дискография</div>
+          <div class="card-desc">Энциклопедия, биография & релизы</div>
         </div>
         <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
@@ -687,7 +611,6 @@
 
     </section>
 
-    <!-- Footer -->
     <footer>
       © 2026 Sene44. All Rights Reserved.
     </footer>
@@ -697,7 +620,6 @@
   <div class="toast" id="toast">Ссылка скопирована в буфер!</div>
 
   <script>
-    // Particle Canvas Animation
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
@@ -752,7 +674,6 @@
     }
     animate();
 
-    // Share & Toast
     const shareBtn = document.getElementById('shareBtn');
     const toast = document.getElementById('toast');
 
