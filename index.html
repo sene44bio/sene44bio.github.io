@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>SENE44 — Developer • Rapper • Blogger</title>
-  <meta name="description" content="Официальные ссылки SENE44: Яндекс Музыка, Wiki, Telegram, YouTube, VK, Instagram." />
-  <meta name="theme-color" content="#040508" />
-
-  <!-- Google Fonts -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENE44 • Official Bio</title>
+  <meta name="description" content="Sene44 — Developer, Rapper, Blogger. Официальные ссылки, треки, соцсети и комьюнити.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
   <style>
-    *, *::before, *::after {
+    :root {
+      --bg: #090a0f;
+      --card-bg: rgba(18, 20, 29, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(255, 255, 255, 0.22);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-ym: #ff334b;
+      --accent-tg: #2aabee;
+      --accent-tg-pm: #0088cc;
+      --accent-vk: #0077ff;
+      --accent-yt: #ff0033;
+      --accent-inst: #e1306c;
+      --accent-priv: #a855f7;
+      --accent-wiki: #10b981;
+    }
+
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
-    :root {
-      --bg-dark: #05060a;
-      --card-bg: rgba(14, 16, 26, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-main: #f8fafc;
-      --text-muted: #8e95a5;
-      --font-title: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
     body {
-      background-color: var(--bg-dark);
+      background-color: var(--bg);
       color: var(--text-main);
-      font-family: var(--font-body);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      overflow-x: hidden;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
       position: relative;
-      padding: 24px 16px 40px;
+      overflow-x: hidden;
+      padding: 30px 16px 40px;
     }
 
-    /* Ambient Canvas & Glows */
     #bg-canvas {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 0;
       pointer-events: none;
+      z-index: 0;
     }
 
     .ambient-glow {
@@ -60,656 +63,445 @@
       height: 500px;
       border-radius: 50%;
       filter: blur(140px);
-      z-index: 1;
       pointer-events: none;
+      z-index: 0;
       opacity: 0.18;
-      animation: floatOrbs 18s ease-in-out infinite alternate;
     }
-
     .glow-1 {
-      top: -120px;
-      left: -80px;
-      background: radial-gradient(circle, #38bdf8 0%, #0284c7 35%, transparent 70%);
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, #6366f1, #3b82f6);
     }
-
     .glow-2 {
       bottom: -150px;
-      right: -80px;
-      background: radial-gradient(circle, #ff0055 0%, #fc3f1d 45%, transparent 70%);
-    }
-
-    .glow-3 {
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, #10b981 0%, #064e3b 50%, transparent 70%);
-      opacity: 0.12;
-    }
-
-    @keyframes floatOrbs {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(45px, 60px) scale(1.08); }
-      100% { transform: translate(-45px, 80px) scale(0.94); }
+      right: 10%;
+      background: radial-gradient(circle, #ec4899, #8b5cf6);
     }
 
     .container {
-      position: relative;
-      z-index: 2;
       width: 100%;
-      max-width: 660px;
+      max-width: 540px;
+      position: relative;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 auto;
     }
 
-    /* Top Floating Bar */
-    .top-bar {
+    /* Top bar */
+    .top-actions {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
-    .status-badge {
+    .badge-status {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
+      gap: 7px;
+      padding: 6px 12px;
+      border-radius: 999px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 9999px;
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       font-size: 0.72rem;
       font-weight: 700;
-      color: #e2e8f0;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: #e2e8f0;
     }
 
-    .pulse-dot {
+    .status-dot {
       width: 7px;
       height: 7px;
-      background: #22c55e;
       border-radius: 50%;
-      box-shadow: 0 0 10px #22c55e;
-      animation: pulseAnim 1.8s infinite;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
     }
 
-    @keyframes pulseAnim {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.5; }
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
-    .top-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .action-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+    .btn-share {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--text-muted);
       cursor: pointer;
-      color: var(--text-main);
       transition: all 0.25s ease;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
     }
-
-    .action-btn:hover {
+    .btn-share:hover {
+      color: #fff;
       background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
       transform: translateY(-2px);
     }
 
     /* Profile Header */
-    .profile-section {
+    .profile {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      margin-bottom: 22px;
-      position: relative;
+      margin-bottom: 24px;
     }
 
     .avatar-wrapper {
       position: relative;
-      width: 112px;
-      height: 112px;
+      width: 104px;
+      height: 104px;
       margin-bottom: 14px;
     }
 
-    .avatar-halo {
+    .avatar-ring {
       position: absolute;
-      inset: -5px;
+      inset: -4px;
       border-radius: 50%;
-      background: conic-gradient(from 180deg, #ffffff 0%, #ff0055 25%, #10b981 50%, #38bdf8 75%, #ffffff 100%);
-      filter: blur(8px);
-      opacity: 0.75;
-      animation: spinGlow 9s linear infinite;
+      background: linear-gradient(135deg, #ff334b, #3b82f6, #a855f7);
+      opacity: 0.85;
+      filter: blur(1px);
+      animation: rotateRing 8s linear infinite;
     }
 
-    @keyframes spinGlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes rotateRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .avatar-container {
+    .avatar-img {
       position: relative;
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: #090a0f;
-      padding: 3px;
-      overflow: hidden;
-      z-index: 1;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-    }
-
-    .avatar-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
       object-fit: cover;
-      object-position: center top;
+      border: 3px solid #090a0f;
+      background: #111;
       display: block;
-      filter: contrast(1.08) brightness(1.02);
     }
 
-    .verified-mark {
+    .avatar-badge {
       position: absolute;
       bottom: 2px;
       right: 2px;
-      z-index: 3;
-      width: 26px;
-      height: 26px;
-      background: #000;
-      border: 2px solid #ffffff;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
+      background: #090a0f;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
-    }
-
-    .verified-mark svg {
-      width: 13px;
-      height: 13px;
-      fill: #ffffff;
-    }
-
-    /* Fixed Exact Baseline Alignment for SENE44 */
-    .profile-title-row {
-      display: flex;
-      justify-content: center;
-      align-items: baseline;
-      margin-bottom: 6px;
-      width: 100%;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      color: #38bdf8;
     }
 
     .artist-name {
-      font-family: var(--font-title);
-      font-size: 2.35rem;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      line-height: 1;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+      color: #ffffff;
       display: inline-flex;
       align-items: baseline;
       justify-content: center;
-      background: linear-gradient(180deg, #ffffff 35%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 28px rgba(255, 255, 255, 0.12);
       font-feature-settings: "lnum" 1, "tnum" 1;
-      font-variant-numeric: lining-nums;
     }
 
-    .artist-name span {
+    .artist-name .num {
+      display: inline-block;
       vertical-align: baseline;
-      display: inline;
+      color: #f1f5f9;
     }
 
-    .artist-tagline {
-      font-size: 0.8rem;
-      color: #94a3b8;
+    .artist-roles {
+      font-size: 0.76rem;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 10px;
+      color: var(--text-muted);
+      margin-top: 6px;
     }
 
-    /* Soundwave */
-    .soundwave {
-      display: inline-flex;
-      align-items: center;
-      gap: 3.5px;
-      height: 12px;
-    }
-
-    .soundwave-bar {
-      width: 3px;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.45);
-      border-radius: 2px;
-      animation: soundwaveBounce 1.2s ease-in-out infinite alternate;
-    }
-
-    .soundwave-bar:nth-child(2) { animation-delay: 0.2s; height: 70%; }
-    .soundwave-bar:nth-child(3) { animation-delay: 0.4s; height: 100%; }
-    .soundwave-bar:nth-child(4) { animation-delay: 0.1s; height: 60%; }
-    .soundwave-bar:nth-child(5) { animation-delay: 0.3s; height: 85%; }
-
-    @keyframes soundwaveBounce {
-      0% { transform: scaleY(0.3); opacity: 0.3; }
-      100% { transform: scaleY(1); opacity: 0.9; }
-    }
-
-    /* Bento 2-Column Grid Layout */
+    /* Links Bento */
     .links-grid {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 11px;
-      margin-bottom: 22px;
+      gap: 10px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 15px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--card-hover-border);
+    }
+    .card:active {
+      transform: translateY(-1px) scale(0.99);
     }
 
     .card-full {
       grid-column: 1 / -1;
     }
 
-    .link-tile {
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 14px 16px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      text-decoration: none;
-      color: var(--text-main);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-      overflow: hidden;
-    }
-
-    .link-tile::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 70%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-      transform: skewX(-25deg);
-      transition: left 0.65s ease;
-      pointer-events: none;
-    }
-
-    .link-tile:hover::before {
-      left: 150%;
-    }
-
-    .tile-icon-box {
+    .icon-box {
       width: 42px;
       height: 42px;
-      min-width: 42px;
-      border-radius: 13px;
+      border-radius: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 13px;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .card:hover .icon-box {
+      transform: scale(1.08);
     }
 
-    .tile-info {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+    .card-content {
+      flex: 1;
       min-width: 0;
     }
 
-    .tile-title {
-      font-size: 0.94rem;
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .card-title-row {
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .tile-desc {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-top: 2px;
+    .card-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: 500;
     }
 
-    .tile-arrow {
-      width: 18px;
-      height: 18px;
-      color: rgba(255, 255, 255, 0.3);
-      margin-left: 6px;
-      transition: transform 0.25s ease, color 0.25s ease;
-      flex-shrink: 0;
+    .card-desc {
+      font-size: 0.71rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* 1. Yandex Music Banner Styling */
-    .brand-yandex {
-      --brand-color: #fc3f1d;
-      --brand-glow: rgba(252, 63, 29, 0.35);
-      border-color: rgba(252, 63, 29, 0.32);
-      background: linear-gradient(135deg, rgba(252, 63, 29, 0.12) 0%, rgba(17, 19, 29, 0.88) 100%);
-      padding: 16px 18px;
-    }
-
-    .brand-yandex .tile-icon-box {
-      background: linear-gradient(135deg, #fc3f1d, #ffb703);
-      color: #000;
-      box-shadow: 0 0 16px rgba(252, 63, 29, 0.55);
-    }
-
-    .brand-yandex .tile-badge {
-      display: inline-block;
-      font-size: 0.63rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 6px;
-      background: #fc3f1d;
-      color: #ffffff;
-      margin-left: 6px;
-    }
-
-    /* 2. SUPER VIP FLEX WIKI CARD */
-    .brand-wiki-flex {
-      --brand-color: #10b981;
-      --brand-glow: rgba(16, 185, 129, 0.45);
-      position: relative;
-      border-color: rgba(16, 185, 129, 0.4);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(13, 24, 25, 0.9) 50%, rgba(10, 12, 18, 0.92) 100%);
-      box-shadow: 0 0 24px -6px rgba(16, 185, 129, 0.38);
-      padding: 16px 18px;
-    }
-
-    .brand-wiki-flex::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 18px;
-      padding: 1.5px;
-      background: linear-gradient(90deg, #10b981, #06b6d4, #eab308, #10b981);
-      background-size: 300% 300%;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: borderShift 4s ease infinite;
-      pointer-events: none;
-    }
-
-    @keyframes borderShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .brand-wiki-flex .tile-icon-box {
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.55);
-    }
-
-    .brand-wiki-flex .wiki-flex-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
+    .card-badge {
       font-size: 0.62rem;
       font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 6px;
-      background: rgba(16, 185, 129, 0.22);
-      border: 1px solid rgba(16, 185, 129, 0.55);
-      color: #34d399;
-      margin-left: 6px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
     }
 
-    /* Brand Colors */
-    .brand-tg-chan {
-      --brand-color: #27a7e7;
-      --brand-glow: rgba(39, 167, 231, 0.3);
+    .arrow-icon {
+      color: rgba(255, 255, 255, 0.3);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
     }
-    .brand-tg-chan .tile-icon-box {
-      background: rgba(39, 167, 231, 0.15);
-      border: 1px solid rgba(39, 167, 231, 0.35);
-      color: #38bdf8;
-    }
-
-    .brand-tg-pm {
-      --brand-color: #0088cc;
-      --brand-glow: rgba(0, 136, 204, 0.3);
-    }
-    .brand-tg-pm .tile-icon-box {
-      background: rgba(0, 136, 204, 0.15);
-      border: 1px solid rgba(0, 136, 204, 0.35);
-      color: #60a5fa;
+    .card:hover .arrow-icon {
+      color: #fff;
+      transform: translateX(3px);
     }
 
-    .brand-vk {
-      --brand-color: #0077ff;
-      --brand-glow: rgba(0, 119, 255, 0.3);
+    /* Card Specifics */
+    /* 1. Yandex Music */
+    .card-ym {
+      background: linear-gradient(100deg, rgba(255, 51, 75, 0.16), rgba(18, 20, 29, 0.85));
+      border-color: rgba(255, 51, 75, 0.35);
     }
-    .brand-vk .tile-icon-box {
-      background: rgba(0, 119, 255, 0.15);
-      border: 1px solid rgba(0, 119, 255, 0.35);
-      color: #3b82f6;
+    .card-ym .icon-box {
+      background: linear-gradient(135deg, #ff334b, #ff7a00);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 51, 75, 0.35);
     }
-
-    .brand-yt {
-      --brand-color: #ff0033;
-      --brand-glow: rgba(255, 0, 51, 0.3);
+    .card-ym .card-badge {
+      background: rgba(255, 51, 75, 0.25);
+      border: 1px solid rgba(255, 51, 75, 0.5);
+      color: #ff99a8;
     }
-    .brand-yt .tile-icon-box {
-      background: rgba(255, 0, 51, 0.15);
-      border: 1px solid rgba(255, 0, 51, 0.35);
-      color: #ff334b;
-    }
-
-    .brand-ig {
-      --brand-color: #e1306c;
-      --brand-glow: rgba(225, 48, 108, 0.3);
-    }
-    .brand-ig .tile-icon-box {
-      background: rgba(225, 48, 108, 0.15);
-      border: 1px solid rgba(225, 48, 108, 0.35);
-      color: #f43f5e;
+    .card-ym:hover {
+      box-shadow: 0 8px 25px rgba(255, 51, 75, 0.25);
+      border-color: rgba(255, 51, 75, 0.65);
     }
 
-    .brand-tg-privat {
-      --brand-color: #a855f7;
-      --brand-glow: rgba(168, 85, 247, 0.35);
+    /* 2. TG Channel */
+    .card-tg .icon-box {
+      background: rgba(42, 171, 238, 0.14);
+      color: var(--accent-tg);
+      border: 1px solid rgba(42, 171, 238, 0.25);
     }
-    .brand-tg-privat .tile-icon-box {
+    .card-tg:hover {
+      border-color: rgba(42, 171, 238, 0.45);
+      box-shadow: 0 6px 20px rgba(42, 171, 238, 0.15);
+    }
+
+    /* 3. TG PM */
+    .card-tgpm .icon-box {
+      background: rgba(0, 136, 204, 0.14);
+      color: var(--accent-tg-pm);
+      border: 1px solid rgba(0, 136, 204, 0.25);
+    }
+    .card-tgpm:hover {
+      border-color: rgba(0, 136, 204, 0.45);
+      box-shadow: 0 6px 20px rgba(0, 136, 204, 0.15);
+    }
+
+    /* 4. VK */
+    .card-vk .icon-box {
+      background: rgba(0, 119, 255, 0.14);
+      color: var(--accent-vk);
+      border: 1px solid rgba(0, 119, 255, 0.25);
+    }
+    .card-vk:hover {
+      border-color: rgba(0, 119, 255, 0.45);
+      box-shadow: 0 6px 20px rgba(0, 119, 255, 0.15);
+    }
+
+    /* 5. YouTube */
+    .card-yt .icon-box {
+      background: rgba(255, 0, 51, 0.14);
+      color: var(--accent-yt);
+      border: 1px solid rgba(255, 0, 51, 0.25);
+    }
+    .card-yt:hover {
+      border-color: rgba(255, 0, 51, 0.45);
+      box-shadow: 0 6px 20px rgba(255, 0, 51, 0.15);
+    }
+
+    /* 6. Instagram */
+    .card-inst .icon-box {
+      background: rgba(225, 48, 108, 0.14);
+      color: var(--accent-inst);
+      border: 1px solid rgba(225, 48, 108, 0.25);
+    }
+    .card-inst:hover {
+      border-color: rgba(225, 48, 108, 0.45);
+      box-shadow: 0 6px 20px rgba(225, 48, 108, 0.15);
+    }
+
+    /* 7. TG Private */
+    .card-priv .icon-box {
+      background: rgba(168, 85, 247, 0.14);
+      color: var(--accent-priv);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+    }
+    .card-priv:hover {
+      border-color: rgba(168, 85, 247, 0.45);
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.2);
+    }
+
+    /* 8. Fandom Wiki (VIP Full-width) */
+    .card-wiki {
+      background: linear-gradient(110deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.07), rgba(18, 20, 29, 0.9));
+      border: 1px solid rgba(16, 185, 129, 0.35);
       position: relative;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(99, 102, 241, 0.18));
-      border: 1px solid rgba(168, 85, 247, 0.45);
-      color: #c084fc;
     }
-
-    /* Hover States */
-    .link-tile:hover {
-      transform: translateY(-3px) scale(1.012);
-      border-color: var(--brand-color);
-      box-shadow: 0 10px 24px -6px var(--brand-glow), 0 0 0 1px var(--brand-color);
-      background: rgba(22, 24, 38, 0.9);
+    .card-wiki .icon-box {
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
     }
-
-    .link-tile:hover .tile-icon-box {
-      transform: scale(1.1) rotate(-3deg);
+    .card-wiki .card-badge {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
     }
-
-    .link-tile:hover .tile-arrow {
-      color: var(--brand-color);
-      transform: translateX(4px);
-    }
-
-    .link-tile:active {
-      transform: scale(0.98);
+    .card-wiki:hover {
+      border-color: rgba(16, 185, 129, 0.65);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.22);
     }
 
     /* Footer */
-    .footer {
-      width: 100%;
-      text-align: center;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 0.8rem;
+    footer {
+      margin-top: 26px;
+      font-size: 0.72rem;
       color: #64748b;
+      letter-spacing: 0.05em;
+      text-align: center;
     }
 
-    .footer strong {
-      color: #cbd5e1;
-    }
-
-    /* Toast Notification */
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: rgba(18, 20, 30, 0.95);
+      background: rgba(15, 23, 42, 0.95);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 12px 22px;
-      border-radius: 9999px;
       color: #fff;
-      font-size: 0.88rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-      opacity: 0;
-      z-index: 999;
-      pointer-events: none;
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
-    /* QR Code Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 5, 8, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      background: #10121b;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 24px;
-      padding: 28px;
-      width: 100%;
-      max-width: 320px;
-      text-align: center;
-      transform: scale(0.92);
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: scale(1);
-    }
-
-    .qr-box {
-      background: #ffffff;
-      padding: 14px;
-      border-radius: 16px;
-      margin: 18px 0;
-      display: inline-block;
-    }
-
-    .qr-img {
-      width: 180px;
-      height: 180px;
-      display: block;
-    }
-
-    .modal-btn {
-      width: 100%;
-      padding: 11px 0;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.8rem;
       font-weight: 600;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background 0.2s ease;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 100;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .modal-btn:hover {
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    /* Mobile Responsive Adaptation */
-    @media (max-width: 580px) {
+    @media (max-width: 480px) {
       body {
-        padding: 20px 12px 36px;
+        padding: 24px 12px 34px;
       }
       .links-grid {
-        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .card {
+        padding: 12px 10px;
         gap: 10px;
       }
+      .icon-box {
+        width: 38px;
+        height: 38px;
+      }
       .artist-name {
-        font-size: 2.1rem;
-      }
-      .link-tile {
-        padding: 13px 15px;
-      }
-      .tile-icon-box {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
+        font-size: 1.85rem;
       }
     }
   </style>
@@ -719,395 +511,267 @@
   <canvas id="bg-canvas"></canvas>
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
 
   <main class="container">
     
     <!-- Top Action Bar -->
-    <header class="top-bar">
-      <div class="status-badge">
-        <span class="pulse-dot"></span>
-        <span>Online &bull; Music Streaming</span>
+    <header class="top-actions">
+      <div class="badge-status">
+        <span class="status-dot"></span>
+        <span>Online • Music Streaming</span>
       </div>
-
-      <div class="top-actions">
-        <button class="action-btn" id="qrBtn" title="QR-код страницы" aria-label="Показать QR-код">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-        </button>
-
-        <button class="action-btn" id="shareBtn" title="Поделиться" aria-label="Поделиться ссылкой">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-          </svg>
-        </button>
-      </div>
+      <button class="btn-share" id="shareBtn" title="Поделиться" aria-label="Поделиться">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+      </button>
     </header>
 
-    <!-- Profile Header -->
-    <section class="profile-section">
+    <!-- Profile Area -->
+    <section class="profile">
       <div class="avatar-wrapper">
-        <div class="avatar-halo"></div>
-        <div class="avatar-container">
-          <img 
-            class="avatar-img" 
-            src="avatar.jpg" 
-            alt="SENE44 Profile" 
-            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=400&q=80';"
-          />
-        </div>
-        <div class="verified-mark" title="Официальный профиль">
-          <svg viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        <div class="avatar-ring"></div>
+        <img src="avatar.jpg" alt="Sene44" class="avatar-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'">
+        <div class="avatar-badge" title="Verified Artist">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
           </svg>
         </div>
       </div>
-
-      <!-- SENE44 on exact single line & baseline -->
-      <div class="profile-title-row">
-        <h1 class="artist-name"><span>SENE44</span></h1>
-      </div>
-
-      <!-- Roles in English -->
-      <p class="artist-tagline">DEVELOPER &bull; RAPPER &bull; BLOGGER</p>
-
-      <div class="soundwave" title="Audio streaming active">
-        <div class="soundwave-bar"></div>
-        <div class="soundwave-bar"></div>
-        <div class="soundwave-bar"></div>
-        <div class="soundwave-bar"></div>
-        <div class="soundwave-bar"></div>
-      </div>
+      
+      <h1 class="artist-name">SENE<span class="num">44</span></h1>
+      <p class="artist-roles">DEVELOPER • RAPPER • BLOGGER</p>
     </section>
 
-    <!-- Bento Grid Navigation (2 Columns) -->
-    <nav class="links-grid" aria-label="Social and Music Links">
-
-      <!-- 1. YANDEX MUSIC (Featured Top Banner) -->
-      <a href="https://music.yandex.ru/artist/25966786?utm_source=desktop&utm_medium=copy_link" target="_blank" rel="noopener noreferrer" class="link-tile card-full brand-yandex">
-        <div class="tile-icon-box">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <!-- Links Grid -->
+    <section class="links-grid">
+      
+      <!-- 1. Yandex Music (Full) -->
+      <a href="https://music.yandex.ru/artist/25966786?utm_source=desktop&utm_medium=copy_link" target="_blank" rel="noopener noreferrer" class="card card-full card-ym">
+        <div class="icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">
-            Яндекс Музыка <span class="tile-badge">New Tracks</span>
-          </span>
-          <span class="tile-desc">Слушать все официальные релизы и треки</span>
+        <div class="card-content">
+          <div class="card-title-row">
+            <span class="card-title">Яндекс Музыка</span>
+            <span class="card-badge">New Tracks</span>
+          </div>
+          <div class="card-desc">Слушать все официальные релизы и треки</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
-      <!-- 2. Telegram channel -->
-      <a href="https://t.me/Sene4ka_Official" target="_blank" rel="noopener noreferrer" class="link-tile brand-tg-chan">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      <!-- 2. Telegram Channel -->
+      <a href="https://t.me/Sene4ka_Official" target="_blank" rel="noopener noreferrer" class="card card-tg">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.98-1.73 6.64-2.88 7.97-3.44 3.79-1.58 4.58-1.85 5.1-1.86.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.19-.04.35z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">Telegram channel</span>
-          <span class="tile-desc">Личный блог</span>
+        <div class="card-content">
+          <div class="card-title">Telegram channel</div>
+          <div class="card-desc">Личный блог</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
       <!-- 3. Telegram Личка -->
-      <a href="https://t.me/Real_S4" target="_blank" rel="noopener noreferrer" class="link-tile brand-tg-pm">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.15-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .26z"/>
+      <a href="https://t.me/Real_S4" target="_blank" rel="noopener noreferrer" class="card card-tgpm">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">Telegram Личка</span>
-          <span class="tile-desc">Личка &amp; связь</span>
+        <div class="card-content">
+          <div class="card-title">Telegram Личка</div>
+          <div class="card-desc">Личка & связь</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
       <!-- 4. VK Личка -->
-      <a href="https://vk.ru/sene4kalive" target="_blank" rel="noopener noreferrer" class="link-tile brand-vk">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.38 13.91h-1.57c-.59 0-.77-.47-1.83-1.53-.92-.9-1.33-1.02-1.56-1.02-.32 0-.41.09-.41.53v1.38c0 .38-.12.64-1.15.64-1.7 0-3.59-1.03-4.92-2.96-2.02-2.87-2.58-5.03-2.58-5.47 0-.24.09-.46.54-.46h1.57c.4 0 .55.18.7.6 1.76 5.09 2.92 6.45 3.32 6.45.15 0 .22-.07.22-.45V11.2c-.07-1.14-.66-1.24-.66-1.65 0-.2.17-.4.43-.4h2.46c.33 0 .45.17.45.56v3.08c0 .33.15.45.24.45.2 0 .36-.12.73-.49 1.13-1.27 1.93-3.25 1.93-3.25.11-.23.3-.45.7-.45h1.57c.47 0 .57.24.47.57-.2 0.94-2.18 3.73-2.28 3.88-.19.3-.27.43 0 .79.18.25.79.77 1.2 1.25.75.87 1.33 1.6 1.48 2.1.1.33-.06.52-.5.52z"/>
+      <a href="https://vk.ru/sene4kalive" target="_blank" rel="noopener noreferrer" class="card card-vk">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.054-1.716-1.036-1.01-1.498-1.143-1.752-1.143-.356 0-.457.102-.457.584v1.65c0 .432-.14.69-1.27.69-1.88 0-3.962-1.143-5.435-3.277-2.235-3.15-2.844-5.512-2.844-5.994 0-.254.102-.483.584-.483h1.744c.432 0 .597.203.762.66.838 2.413 2.235 4.546 2.819 4.546.216 0 .317-.102.317-.66V10.22c-.063-1.194-.71-1.295-.71-1.714 0-.203.165-.406.432-.406h2.743c.368 0 .508.19.508.622v3.352c0 .356.165.483.267.483.216 0 .394-.127.787-.52 1.219-1.372 2.083-3.48 2.083-3.48.114-.241.317-.457.75-.457h1.744c.52 0 .635.267.52.622-.216.99-2.31 3.962-2.31 3.962-.19.305-.267.444 0 .8.38.508 1.638 1.6 2.476 2.641.635.787.889 1.257.495 1.65z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">VK Личка</span>
-          <span class="tile-desc">Связь ВКонтакте</span>
+        <div class="card-content">
+          <div class="card-title">VK Личка</div>
+          <div class="card-desc">Связь ВКонтакте</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
       <!-- 5. YouTube -->
-      <a href="https://www.youtube.com/@Sene44_Official" target="_blank" rel="noopener noreferrer" class="link-tile brand-yt">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <a href="https://www.youtube.com/@Sene44_Official" target="_blank" rel="noopener noreferrer" class="card card-yt">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">YouTube</span>
-          <span class="tile-desc">Клипы &amp; треки</span>
+        <div class="card-content">
+          <div class="card-title">YouTube</div>
+          <div class="card-desc">Клипы & треки</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
       <!-- 6. Instagram -->
-      <a href="https://www.instagram.com/sene44_official/" target="_blank" rel="noopener noreferrer" class="link-tile brand-ig">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <a href="https://www.instagram.com/sene44_official/" target="_blank" rel="noopener noreferrer" class="card card-inst">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">Instagram</span>
-          <span class="tile-desc">Фото &amp; сторис</span>
+        <div class="card-content">
+          <div class="card-title">Instagram</div>
+          <div class="card-desc">Фото & сторис</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
       <!-- 7. Telegram Приват -->
-      <a href="https://t.me/+mMTdu-pHBos0ZTYy" target="_blank" rel="noopener noreferrer" class="link-tile brand-tg-privat">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.8 6.54l-1.39 6.58c-.1.47-.38.58-.77.36l-2.14-1.58-1.03 1c-.11.11-.21.21-.43.21l.15-2.19 3.99-3.6c.17-.15-.04-.24-.27-.08l-4.93 3.1-2.12-.66c-.46-.14-.47-.46.1-.68l8.29-3.2c.38-.14.72.09.55.76z"/>
-            <path d="M19 13.5v-1a2.5 2.5 0 0 0-5 0v1a1.5 1.5 0 0 0-1.5 1.5v4A1.5 1.5 0 0 0 14 20.5h5a1.5 1.5 0 0 0 1.5-1.5v-4a1.5 1.5 0 0 0-1.5-1.5zm-3.8-1a1.3 1.3 0 1 1 2.6 0v1h-2.6v-1z" fill="#f8fafc" stroke="#10121b" stroke-width="0.8"/>
+      <a href="https://t.me/+mMTdu-pHBos0ZTYy" target="_blank" rel="noopener noreferrer" class="card card-priv">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">Telegram Приват</span>
-          <span class="tile-desc">Общение и друзья</span>
+        <div class="card-content">
+          <div class="card-title">Telegram Приват</div>
+          <div class="card-desc">Общение & друзья</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
-      <!-- 8. VIP WIKI PAGE (Full-width, prominently visible at bottom) -->
-      <a href="https://sims.fandom.com/wiki/Репер_Sene44" target="_blank" rel="noopener noreferrer" class="link-tile card-full brand-wiki-flex">
-        <div class="tile-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 2H6c-1.2 0-2 .8-2 2v16c0 1.2.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.2-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1zm0-4H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1zm0-4H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1zm0-4H6c-.55 0-1-.45-1-1s.45-1 1-1h12c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+      <!-- 8. Official Wiki Page (Full VIP) -->
+      <a href="https://sene44.fandom.com/ru/wiki/Sene44_Вики" target="_blank" rel="noopener noreferrer" class="card card-full card-wiki">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
           </svg>
         </div>
-        <div class="tile-info">
-          <span class="tile-title">
-            Wiki Page <span class="wiki-flex-badge">VERIFIED LORE &#9733;</span>
-          </span>
-          <span class="tile-desc">Официальная биография &amp; лор артиста Sene44</span>
+        <div class="card-content">
+          <div class="card-title-row">
+            <span class="card-title">Official Fandom Wiki</span>
+            <span class="card-badge">VERIFIED LORE ★</span>
+          </div>
+          <div class="card-desc">Официальная энциклопедия, биография & дискография</div>
         </div>
-        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
 
-    </nav>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; <span id="currentYear"></span> <strong>SENE44</strong>. All Rights Reserved.</p>
+    <footer>
+      © 2026 Sene44. All Rights Reserved.
     </footer>
 
   </main>
 
-  <!-- Toast Notification -->
-  <div class="toast" id="toast" role="alert" aria-live="polite">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="20 6 9 17 4 12"></polyline>
-    </svg>
-    <span id="toastMsg">Ссылка скопирована!</span>
-  </div>
-
-  <!-- QR Code Modal -->
-  <div class="modal-overlay" id="qrModal">
-    <div class="modal-card">
-      <h3 style="font-family: var(--font-title); font-size: 1.25rem; margin-bottom: 6px;">QR-код страницы</h3>
-      <p style="font-size: 0.82rem; color: #94a3b8;">Наведи камеру смартфона для перехода</p>
-      
-      <div class="qr-box">
-        <img id="qrImg" class="qr-img" src="" alt="QR code" />
-      </div>
-
-      <button class="modal-btn" id="closeModalBtn">Закрыть</button>
-    </div>
-  </div>
+  <div class="toast" id="toast">Ссылка скопирована в буфер!</div>
 
   <script>
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-    // Canvas Background Glow Particles
+    // Particle Canvas Animation
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
-    let particles = [];
     let width, height;
+    let particles = [];
 
     function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      init();
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.4 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
-    function init() {
-      particles = [];
-      const count = Math.min(Math.floor((width * height) / 16000), 55);
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          r: Math.random() * 1.6 + 0.4,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          alpha: Math.random() * 0.5 + 0.15
-        });
-      }
+    const particleCount = Math.min(Math.floor((width * height) / 12000), 50);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
     }
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(226, 232, 240, ${p.alpha})`;
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
+      for (let p of particles) {
+        p.update();
+        p.draw();
       }
       requestAnimationFrame(animate);
     }
-
-    window.addEventListener('resize', resize);
-    resize();
     animate();
 
-    // Clipboard & Toast
-    const toast = document.getElementById('toast');
-    let toastTimeout;
-
-    function showToast(text) {
-      document.getElementById('toastMsg').textContent = text;
-      toast.classList.add('show');
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2400);
-    }
-
-    function copyLink(str) {
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(str).then(() => showToast('Ссылка скопирована!')).catch(() => fallbackCopy(str));
-      } else {
-        fallbackCopy(str);
-      }
-    }
-
-    function fallbackCopy(text) {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand('copy');
-        showToast('Ссылка скопирована!');
-      } catch (err) {
-        showToast('Не удалось скопировать');
-      }
-      document.body.removeChild(ta);
-    }
-
-    // Share Click
+    // Share & Toast
     const shareBtn = document.getElementById('shareBtn');
-    shareBtn.addEventListener('click', () => {
+    const toast = document.getElementById('toast');
+
+    shareBtn.addEventListener('click', async () => {
       const url = window.location.href;
       if (navigator.share) {
-        navigator.share({
-          title: 'SENE44 — Official Bio',
-          text: 'Официальные ссылки SENE44',
-          url: url
-        }).catch(() => copyLink(url));
-      } else {
-        copyLink(url);
+        try {
+          await navigator.share({
+            title: 'SENE44 • Official Bio',
+            text: 'Официальные ссылки и контакты Sene44',
+            url: url
+          });
+          return;
+        } catch(e) {}
       }
-    });
-
-    // QR Code Modal
-    const qrBtn = document.getElementById('qrBtn');
-    const qrModal = document.getElementById('qrModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const qrImg = document.getElementById('qrImg');
-
-    qrBtn.addEventListener('click', () => {
-      const currentUrl = encodeURIComponent(window.location.href);
-      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${currentUrl}&margin=4`;
-      qrModal.classList.add('active');
-    });
-
-    closeModalBtn.addEventListener('click', () => qrModal.classList.remove('active'));
-    qrModal.addEventListener('click', (e) => {
-      if (e.target === qrModal) qrModal.classList.remove('active');
-    });
-
-    // 3D Tilt On Desktop
-    const tiles = document.querySelectorAll('.link-tile');
-    tiles.forEach(tile => {
-      tile.addEventListener('mousemove', (e) => {
-        if (window.innerWidth < 640) return;
-        const rect = tile.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const rotX = ((y - cy) / cy) * -5;
-        const rotY = ((x - cx) / cx) * 5;
-        tile.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-3px)`;
-      });
-
-      tile.addEventListener('mouseleave', () => {
-        tile.style.transform = '';
+      
+      navigator.clipboard.writeText(url).then(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
       });
     });
   </script>
