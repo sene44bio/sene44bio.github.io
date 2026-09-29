@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Sene44 — Official Links</title>
+  <meta name="description" content="Официальные ссылки рэпера Sene44: Яндекс Музыка, Telegram, YouTube, VK, Instagram, Wiki." />
+  <meta name="theme-color" content="#050508" />
+
+  <!-- Google Fonts: Space Grotesk & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-dark: #06060a;
+      --card-bg: rgba(15, 16, 24, 0.72);
+      --card-border: rgba(255, 255, 255, 0.07);
+      --text-main: #f8fafc;
+      --text-muted: #8e95a5;
+      --font-title: 'Syne', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: hidden;
+      position: relative;
+      padding: 32px 16px 56px;
+    }
+
+    /* Background Ambient Canvas & Neon Orbs */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.28;
+      animation: floatOrbs 20s ease-in-out infinite alternate;
+    }
+
+    .glow-1 {
+      top: -120px;
+      left: -100px;
+      background: radial-gradient(circle, #e2e8f0 0%, #64748b 40%, transparent 70%);
+      opacity: 0.16;
+    }
+
+    .glow-2 {
+      bottom: -150px;
+      right: -100px;
+      background: radial-gradient(circle, #ff0055 0%, #ffcc00 45%, transparent 70%);
+      opacity: 0.2;
+    }
+
+    @keyframes floatOrbs {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 50px) scale(1.1); }
+      100% { transform: translate(-50px, 90px) scale(0.95); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    /* Top Floating Bar */
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+      animation: pulseAnim 1.8s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-main);
+      transition: all 0.25s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Profile Header */
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 124px;
+      height: 124px;
+      margin-bottom: 18px;
+    }
+
+    .avatar-halo {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg, #ffffff 0%, #ff0055 30%, #38bdf8 65%, #ffffff 100%);
+      filter: blur(8px);
+      opacity: 0.75;
+      animation: spinGlow 9s linear infinite;
+    }
+
+    @keyframes spinGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #090a0f;
+      padding: 3.5px;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: contrast(1.08) brightness(1.02);
+    }
+
+    .verified-mark {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      z-index: 3;
+      width: 28px;
+      height: 28px;
+      background: #000;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+    }
+
+    .verified-mark svg {
+      width: 14px;
+      height: 14px;
+      fill: #ffffff;
+    }
+
+    .profile-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .artist-name {
+      font-family: var(--font-title);
+      font-size: 2.3rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 75%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .artist-tagline {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .artist-bio {
+      font-size: 0.92rem;
+      color: #64748b;
+      max-width: 420px;
+      line-height: 1.45;
+    }
+
+    /* Soundwave Audio Indicator */
+    .soundwave {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      height: 14px;
+      margin-top: 10px;
+    }
+
+    .soundwave-bar {
+      width: 3px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 2px;
+      animation: soundwaveBounce 1.2s ease-in-out infinite alternate;
+    }
+
+    .soundwave-bar:nth-child(2) { animation-delay: 0.2s; height: 70%; }
+    .soundwave-bar:nth-child(3) { animation-delay: 0.4s; height: 100%; }
+    .soundwave-bar:nth-child(4) { animation-delay: 0.1s; height: 60%; }
+    .soundwave-bar:nth-child(5) { animation-delay: 0.3s; height: 85%; }
+
+    @keyframes soundwaveBounce {
+      0% { transform: scaleY(0.3); opacity: 0.3; }
+      100% { transform: scaleY(1); opacity: 0.9; }
+    }
+
+    /* Bento 2-Column Grid Layout */
+    .links-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    /* Featured Single Full-Width Card (Yandex Music) */
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    .link-tile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 16px 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text-main);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+    }
+
+    /* Glossy highlight line on hover */
+    .link-tile::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.65s ease;
+      pointer-events: none;
+    }
+
+    .link-tile:hover::before {
+      left: 150%;
+    }
+
+    .tile-icon-box {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tile-info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .tile-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tile-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+    }
+
+    .tile-arrow {
+      width: 20px;
+      height: 20px;
+      color: rgba(255, 255, 255, 0.3);
+      margin-left: 8px;
+      transition: transform 0.25s ease, color 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    /* Featured Yandex Music Extra Glow */
+    .brand-yandex {
+      --brand-color: #fc3f1d;
+      --brand-glow: rgba(252, 63, 29, 0.32);
+      border-color: rgba(252, 63, 29, 0.28);
+      background: linear-gradient(135deg, rgba(252, 63, 29, 0.08) 0%, rgba(18, 19, 29, 0.8) 100%);
+      padding: 18px 20px;
+    }
+
+    .brand-yandex .tile-icon-box {
+      background: linear-gradient(135deg, #fc3f1d, #ffcc00);
+      color: #000;
+      box-shadow: 0 0 16px rgba(252, 63, 29, 0.5);
+    }
+
+    .brand-yandex .tile-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: #fc3f1d;
+      color: #ffffff;
+      margin-left: 6px;
+    }
+
+    /* Individual Brand Theming */
+    .brand-tg-chan {
+      --brand-color: #27a7e7;
+      --brand-glow: rgba(39, 167, 231, 0.3);
+    }
+    .brand-tg-chan .tile-icon-box {
+      background: rgba(39, 167, 231, 0.15);
+      border: 1px solid rgba(39, 167, 231, 0.35);
+      color: #38bdf8;
+    }
+
+    .brand-tg-pm {
+      --brand-color: #0088cc;
+      --brand-glow: rgba(0, 136, 204, 0.3);
+    }
+    .brand-tg-pm .tile-icon-box {
+      background: rgba(0, 136, 204, 0.15);
+      border: 1px solid rgba(0, 136, 204, 0.35);
+      color: #60a5fa;
+    }
+
+    .brand-vk {
+      --brand-color: #0077ff;
+      --brand-glow: rgba(0, 119, 255, 0.3);
+    }
+    .brand-vk .tile-icon-box {
+      background: rgba(0, 119, 255, 0.15);
+      border: 1px solid rgba(0, 119, 255, 0.35);
+      color: #3b82f6;
+    }
+
+    .brand-yt {
+      --brand-color: #ff0033;
+      --brand-glow: rgba(255, 0, 51, 0.3);
+    }
+    .brand-yt .tile-icon-box {
+      background: rgba(255, 0, 51, 0.15);
+      border: 1px solid rgba(255, 0, 51, 0.35);
+      color: #ff334b;
+    }
+
+    .brand-ig {
+      --brand-color: #e1306c;
+      --brand-glow: rgba(225, 48, 108, 0.3);
+    }
+    .brand-ig .tile-icon-box {
+      background: rgba(225, 48, 108, 0.15);
+      border: 1px solid rgba(225, 48, 108, 0.35);
+      color: #f43f5e;
+    }
+
+    .brand-wiki {
+      --brand-color: #10b981;
+      --brand-glow: rgba(16, 185, 129, 0.3);
+    }
+    .brand-wiki .tile-icon-box {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+    }
+
+    /* Hover States */
+    .link-tile:hover {
+      transform: translateY(-4px) scale(1.015);
+      border-color: var(--brand-color);
+      box-shadow: 0 12px 28px -6px var(--brand-glow), 0 0 0 1px var(--brand-color);
+      background: rgba(22, 24, 38, 0.88);
+    }
+
+    .link-tile:hover .tile-icon-box {
+      transform: scale(1.12) rotate(-3deg);
+    }
+
+    .link-tile:hover .tile-arrow {
+      color: var(--brand-color);
+      transform: translateX(4px);
+    }
+
+    .link-tile:active {
+      transform: scale(0.98);
+    }
+
+    /* Footer */
+    .footer {
+      width: 100%;
+      text-align: center;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    .footer strong {
+      color: #cbd5e1;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(18, 20, 30, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 22px;
+      border-radius: 9999px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+      opacity: 0;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* QR Code Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 5, 8, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #10121b;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 28px;
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+      transform: scale(0.92);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    .qr-box {
+      background: #ffffff;
+      padding: 14px;
+      border-radius: 16px;
+      margin: 18px 0;
+      display: inline-block;
+    }
+
+    .qr-img {
+      width: 180px;
+      height: 180px;
+      display: block;
+    }
+
+    .modal-btn {
+      width: 100%;
+      padding: 11px 0;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .modal-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    /* Mobile Responsive Adaptation */
+    @media (max-width: 580px) {
+      body {
+        padding: 24px 14px 44px;
+      }
+      .links-grid {
+        grid-template-columns: 1fr; /* Switch to 1 card per row on small phones */
+        gap: 11px;
+      }
+      .artist-name {
+        font-size: 2rem;
+      }
+      .link-tile {
+        padding: 14px 16px;
+      }
+      .tile-icon-box {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <main class="container">
+    
+    <!-- Top Action Bar -->
+    <header class="top-bar">
+      <div class="status-badge">
+        <span class="pulse-dot"></span>
+        <span>Online &bull; Music Streaming</span>
+      </div>
+
+      <div class="top-actions">
+        <button class="action-btn" id="qrBtn" title="QR-код профиля" aria-label="Показать QR-код">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </button>
+
+        <button class="action-btn" id="shareBtn" title="Поделиться" aria-label="Поделиться ссылкой">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Profile Header -->
+    <section class="profile-section">
+      <div class="avatar-wrapper">
+        <div class="avatar-halo"></div>
+        <div class="avatar-container">
+          <!-- Put your photo as 'avatar.jpg' in root or keep the encoded link -->
+          <img 
+            class="avatar-img" 
+            src="avatar.jpg" 
+            alt="Sene44 Profile" 
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=400&q=80';"
+          />
+        </div>
+        <div class="verified-mark" title="Официальный верифицированный профиль">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="profile-title-row">
+        <h1 class="artist-name">Sene44</h1>
+      </div>
+
+      <p class="artist-tagline">Artist &bull; Sound &bull; Rapper</p>
+
+      <div class="soundwave" title="Audio streaming vibe">
+        <div class="soundwave-bar"></div>
+        <div class="soundwave-bar"></div>
+        <div class="soundwave-bar"></div>
+        <div class="soundwave-bar"></div>
+        <div class="soundwave-bar"></div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Navigation (2 Columns) -->
+    <nav class="links-grid" aria-label="Social and Music Links">
+
+      <!-- 1. YANDEX MUSIC (Featured Wide Card) -->
+      <a href="https://music.yandex.ru/artist/25966786?utm_source=desktop&utm_medium=copy_link" target="_blank" rel="noopener noreferrer" class="link-tile card-full brand-yandex">
+        <div class="tile-icon-box">
+          <!-- Yandex Music Flame Note SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">
+            Яндекс Музыка <span class="tile-badge">New Tracks</span>
+          </span>
+          <span class="tile-desc">Слушать все официальные релизы и треки</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- 2. Telegram Channel -->
+      <a href="https://t.me/Sene4ka_Official" target="_blank" rel="noopener noreferrer" class="link-tile brand-tg-chan">
+        <div class="tile-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">TG Канал</span>
+          <span class="tile-desc">Новости &amp; лайф</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- 3. Telegram PM -->
+      <a href="https://t.me/Real_S4" target="_blank" rel="noopener noreferrer" class="link-tile brand-tg-pm">
+        <div class="tile-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.15-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .26z"/>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">Telegram PM</span>
+          <span class="tile-desc">Личка &amp; связь</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- 4. VK -->
+      <a href="https://vk.ru/sene4kalive" target="_blank" rel="noopener noreferrer" class="link-tile brand-vk">
+        <div class="tile-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.38 13.91h-1.57c-.59 0-.77-.47-1.83-1.53-.92-.9-1.33-1.02-1.56-1.02-.32 0-.41.09-.41.53v1.38c0 .38-.12.64-1.15.64-1.7 0-3.59-1.03-4.92-2.96-2.02-2.87-2.58-5.03-2.58-5.47 0-.24.09-.46.54-.46h1.57c.4 0 .55.18.7.6 1.76 5.09 2.92 6.45 3.32 6.45.15 0 .22-.07.22-.45V11.2c-.07-1.14-.66-1.24-.66-1.65 0-.2.17-.4.43-.4h2.46c.33 0 .45.17.45.56v3.08c0 .33.15.45.24.45.2 0 .36-.12.73-.49 1.13-1.27 1.93-3.25 1.93-3.25.11-.23.3-.45.7-.45h1.57c.47 0 .57.24.47.57-.2 0.94-2.18 3.73-2.28 3.88-.19.3-.27.43 0 .79.18.25.79.77 1.2 1.25.75.87 1.33 1.6 1.48 2.1.1.33-.06.52-.5.52z"/>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">VK Live</span>
+          <span class="tile-desc">Сообщество ВК</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- 5. YouTube -->
+      <a href="https://www.youtube.com/@Sene44_Official" target="_blank" rel="noopener noreferrer" class="link-tile brand-yt">
+        <div class="tile-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">YouTube</span>
+          <span class="tile-desc">Клипы &amp; треки</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- 6. Instagram -->
+      <a href="https://www.instagram.com/sene44_official/" target="_blank" rel="noopener noreferrer" class="link-tile brand-ig">
+        <div class="tile-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">Instagram</span>
+          <span class="tile-desc">Фото &amp; сторис</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <!-- 7. Fandom Wiki -->
+      <a href="https://sims.fandom.com/wiki/Репер_Sene44" target="_blank" rel="noopener noreferrer" class="link-tile brand-wiki">
+        <div class="tile-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <line x1="9" y1="7" x2="15" y2="7"></line>
+            <line x1="9" y1="11" x2="13" y2="11"></line>
+          </svg>
+        </div>
+        <div class="tile-info">
+          <span class="tile-title">Wiki Page</span>
+          <span class="tile-desc">Биография &amp; лор</span>
+        </div>
+        <svg class="tile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; <span id="currentYear"></span> <strong>Sene44</strong>. All Rights Reserved.</p>
+    </footer>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toastMsg">Ссылка скопирована!</span>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-card">
+      <h3 style="font-family: var(--font-title); font-size: 1.25rem; margin-bottom: 6px;">QR-код страницы</h3>
+      <p style="font-size: 0.82rem; color: #94a3b8;">Наведи камеру для перехода на страницу</p>
+      
+      <div class="qr-box">
+        <img id="qrImg" class="qr-img" src="" alt="QR code" />
+      </div>
+
+      <button class="modal-btn" id="closeModalBtn">Закрыть</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Canvas Background Glow Particles
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let width, height;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      init();
+    }
+
+    function init() {
+      particles = [];
+      const count = Math.min(Math.floor((width * height) / 16000), 55);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.6 + 0.4,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          alpha: Math.random() * 0.5 + 0.15
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(226, 232, 240, ${p.alpha})`;
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / 100)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+
+    // Clipboard & Toast
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    function showToast(text) {
+      document.getElementById('toastMsg').textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+
+    function copyLink(str) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(str).then(() => showToast('Ссылка скопирована!')).catch(() => fallbackCopy(str));
+      } else {
+        fallbackCopy(str);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Ссылка скопирована!');
+      } catch (err) {
+        showToast('Не удалось скопировать');
+      }
+      document.body.removeChild(ta);
+    }
+
+    // Share Click
+    const shareBtn = document.getElementById('shareBtn');
+    shareBtn.addEventListener('click', () => {
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({
+          title: 'Sene44 — Official Links',
+          text: 'Официальные ссылки артиста Sene44',
+          url: url
+        }).catch(() => copyLink(url));
+      } else {
+        copyLink(url);
+      }
+    });
+
+    // QR Code Modal
+    const qrBtn = document.getElementById('qrBtn');
+    const qrModal = document.getElementById('qrModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const qrImg = document.getElementById('qrImg');
+
+    qrBtn.addEventListener('click', () => {
+      const currentUrl = encodeURIComponent(window.location.href);
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${currentUrl}&margin=4`;
+      qrModal.classList.add('active');
+    });
+
+    closeModalBtn.addEventListener('click', () => qrModal.classList.remove('active'));
+    qrModal.addEventListener('click', (e) => {
+      if (e.target === qrModal) qrModal.classList.remove('active');
+    });
+
+    // 3D Tilt On Desktop
+    const tiles = document.querySelectorAll('.link-tile');
+    tiles.forEach(tile => {
+      tile.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 640) return;
+        const rect = tile.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotX = ((y - cy) / cy) * -5;
+        const rotY = ((x - cx) / cx) * 5;
+        tile.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-3px)`;
+      });
+
+      tile.addEventListener('mouseleave', () => {
+        tile.style.transform = '';
+      });
+    });
+  </script>
+</body>
+</html>
