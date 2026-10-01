@@ -7,14 +7,14 @@
   <meta name="description" content="Sene44 — Developer, Rapper, Blogger. Официальные ссылки, треки, соцсети и комьюнити.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg: #090a0f;
-      --card-bg: rgba(18, 20, 29, 0.7);
+      --bg: #07080c;
+      --card-bg: rgba(16, 18, 27, 0.72);
       --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(255, 255, 255, 0.22);
+      --card-hover-border: rgba(255, 255, 255, 0.26);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --accent-ym: #ff334b;
@@ -48,6 +48,7 @@
       padding: 24px 16px 36px;
     }
 
+    /* Интерактивный бэкграунд Canvas */
     #bg-canvas {
       position: fixed;
       inset: 0;
@@ -57,26 +58,34 @@
       z-index: 0;
     }
 
+    /* Неоновые градиентные пятна */
     .ambient-glow {
       position: fixed;
-      width: 450px;
-      height: 450px;
+      width: 480px;
+      height: 480px;
       border-radius: 50%;
       filter: blur(140px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.16;
+      opacity: 0.22;
+      animation: floatGlow 12s ease-in-out infinite alternate;
     }
     .glow-1 {
-      top: -150px;
+      top: -120px;
       left: 50%;
       transform: translateX(-50%);
-      background: radial-gradient(circle, #6366f1, #3b82f6);
+      background: radial-gradient(circle, #6366f1, #a855f7);
     }
     .glow-2 {
       bottom: -150px;
-      right: 10%;
-      background: radial-gradient(circle, #ec4899, #8b5cf6);
+      right: 5%;
+      background: radial-gradient(circle, #ec4899, #3b82f6);
+      animation-delay: -6s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.15) translate(20px, 30px); }
     }
 
     .container {
@@ -95,18 +104,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .badge-status {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 6px 12px;
+      padding: 6px 13px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(14px);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.05em;
@@ -125,17 +134,17 @@
 
     @keyframes pulse {
       0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 0.35; transform: scale(0.85); }
       100% { opacity: 1; transform: scale(1); }
     }
 
     .btn-share {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(14px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -145,8 +154,8 @@
     }
     .btn-share:hover {
       color: #fff;
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px) scale(1.05);
     }
 
     /* Profile Header */
@@ -156,12 +165,20 @@
       align-items: center;
       text-align: center;
       margin-bottom: 22px;
+      position: relative;
+    }
+
+    .avatar-block {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .avatar-wrapper {
       position: relative;
-      width: 98px;
-      height: 98px;
+      width: 104px;
+      height: 104px;
       margin-bottom: 12px;
     }
 
@@ -169,10 +186,10 @@
       position: absolute;
       inset: -4px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ff334b, #3b82f6, #a855f7);
-      opacity: 0.85;
-      filter: blur(1px);
-      animation: rotateRing 8s linear infinite;
+      background: conic-gradient(from 0deg, #ff334b, #3b82f6, #a855f7, #10b981, #ff334b);
+      opacity: 0.9;
+      filter: blur(2px);
+      animation: rotateRing 6s linear infinite;
     }
 
     @keyframes rotateRing {
@@ -186,7 +203,7 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #090a0f;
+      border: 3px solid #07080c;
       background: #111;
       display: block;
     }
@@ -195,46 +212,84 @@
       position: absolute;
       bottom: 2px;
       right: 2px;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: #090a0f;
+      background: #07080c;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
       color: #38bdf8;
     }
 
-    .artist-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
+    /* Счетчик просмотров возле авы */
+    .views-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    .views-counter:hover {
+      border-color: rgba(168, 85, 247, 0.5);
+      background: rgba(168, 85, 247, 0.1);
+      transform: scale(1.04);
+    }
+    .views-counter svg {
+      color: #a855f7;
+    }
+    .views-num {
+      color: #f8fafc;
+      font-family: 'Space Grotesk', monospace;
       font-weight: 800;
       letter-spacing: 0.03em;
+    }
+
+    /* Анимированный переливающийся ник SENE44 */
+    .artist-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
       line-height: 1.1;
-      color: #ffffff;
       display: inline-flex;
       align-items: baseline;
       justify-content: center;
       font-feature-settings: "lnum" 1, "tnum" 1;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 20%, #ff4b6e 45%, #38bdf8 70%, #ffffff 100%);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shineText 5s linear infinite;
+      text-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
     }
 
-    .artist-name .num {
-      display: inline-block;
-      vertical-align: baseline;
-      color: #f1f5f9;
+    @keyframes shineText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .artist-roles {
       font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-top: 6px;
     }
 
-    /* Links Grid: на телефонах 1 колонка, на ПК 2 колонки */
+    /* Сетка карточек */
     .links-grid {
       width: 100%;
       display: grid;
@@ -259,26 +314,45 @@
       padding: 13px 15px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 15px;
+      border-radius: 16px;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       text-decoration: none;
       color: var(--text-main);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    /* Эффект скользящего блика при наведении */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0) 100%);
+      transform: rotate(30deg);
+      transition: all 0.6s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::after {
+      left: 140%;
     }
 
     .card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       border-color: var(--card-hover-border);
     }
     .card:active {
-      transform: scale(0.99);
+      transform: scale(0.985);
     }
 
     .icon-box {
       width: 42px;
       height: 42px;
-      border-radius: 11px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -286,7 +360,7 @@
       transition: transform 0.25s ease;
     }
     .card:hover .icon-box {
-      transform: scale(1.06);
+      transform: scale(1.08) rotate(2deg);
     }
 
     .card-content {
@@ -331,23 +405,24 @@
     }
     .card:hover .arrow-icon {
       color: #fff;
-      transform: translateX(3px);
+      transform: translateX(4px);
     }
 
-    /* Стилизация отдельных карточек */
+    /* Карточки акценты */
     .card-ym {
-      background: linear-gradient(100deg, rgba(255, 51, 75, 0.16), rgba(18, 20, 29, 0.85));
-      border-color: rgba(255, 51, 75, 0.35);
+      background: linear-gradient(100deg, rgba(255, 51, 75, 0.18), rgba(16, 18, 27, 0.85));
+      border-color: rgba(255, 51, 75, 0.38);
     }
     .card-ym .icon-box {
       background: linear-gradient(135deg, #ff334b, #ff7a00);
       color: #fff;
-      box-shadow: 0 4px 15px rgba(255, 51, 75, 0.35);
+      box-shadow: 0 4px 18px rgba(255, 51, 75, 0.4);
     }
     .card-ym .card-badge {
       background: rgba(255, 51, 75, 0.25);
       border: 1px solid rgba(255, 51, 75, 0.5);
       color: #ff99a8;
+      animation: pulse 1.8s infinite;
     }
 
     .card-tg .icon-box {
@@ -387,22 +462,22 @@
     }
 
     .card-wiki {
-      background: linear-gradient(110deg, rgba(16, 185, 129, 0.14), rgba(6, 182, 212, 0.08), rgba(18, 20, 29, 0.9));
-      border: 1px solid rgba(16, 185, 129, 0.35);
+      background: linear-gradient(110deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.09), rgba(16, 18, 27, 0.9));
+      border: 1px solid rgba(16, 185, 129, 0.4);
     }
     .card-wiki .icon-box {
       background: linear-gradient(135deg, #10b981, #06b6d4);
       color: #fff;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
     }
     .card-wiki .card-badge {
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.25);
+      border: 1px solid rgba(16, 185, 129, 0.5);
       color: #6ee7b7;
     }
 
     footer {
-      margin-top: 26px;
+      margin-top: 28px;
       font-size: 0.72rem;
       color: #64748b;
       letter-spacing: 0.05em;
@@ -458,17 +533,28 @@
     </header>
 
     <section class="profile">
-      <div class="avatar-wrapper">
-        <div class="avatar-ring"></div>
-        <img src="avatar.jpg" alt="Sene44" class="avatar-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'">
-        <div class="avatar-badge" title="Verified Artist">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+      <div class="avatar-block">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring"></div>
+          <img src="avatar.jpg" alt="Sene44" class="avatar-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'">
+          <div class="avatar-badge" title="Verified Artist">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Живой счетчик посещений -->
+        <div class="views-counter" title="Всего посещений страницы">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
           </svg>
+          <span class="views-num" id="hitCount">856</span> views
         </div>
       </div>
       
-      <h1 class="artist-name">SENE<span class="num">44</span></h1>
+      <h1 class="artist-name">SENE44</h1>
       <p class="artist-roles">DEVELOPER • RAPPER • BLOGGER</p>
     </section>
 
@@ -590,7 +676,7 @@
         </svg>
       </a>
 
-      <!-- 8. Fandom Wiki -->
+      <!-- 8. Fandom Wiki (VIP Full-width) -->
       <a href="https://sene44.fandom.com/ru/wiki/Sene44_Вики" target="_blank" rel="noopener noreferrer" class="card card-full card-wiki">
         <div class="icon-box">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -620,10 +706,29 @@
   <div class="toast" id="toast">Ссылка скопирована в буфер!</div>
 
   <script>
+    // 1. Улучшенные частицы с созвездиями и отталкиванием курсора
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
+    let mouse = { x: null, y: null, radius: 100 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if(e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -639,17 +744,32 @@
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-        this.alpha = Math.random() * 0.4 + 0.1;
+        this.size = Math.random() * 2 + 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.45;
+        this.speedY = (Math.random() - 0.5) * 0.45;
+        this.alpha = Math.random() * 0.6 + 0.2;
+        this.baseAlpha = this.alpha;
       }
       update() {
+        // Мышь отталкивает частицы
+        if (mouse.x !== null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouse.radius) {
+            let force = (mouse.radius - distance) / mouse.radius;
+            this.x -= (dx / distance) * force * 3;
+            this.y -= (dy / distance) * force * 3;
+          }
+        }
+
         this.x += this.speedX;
         this.y += this.speedY;
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-          this.reset();
-        }
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
       }
       draw() {
         ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
@@ -659,13 +779,33 @@
       }
     }
 
-    const particleCount = Math.min(Math.floor((width * height) / 12000), 50);
+    const particleCount = Math.min(Math.floor((width * height) / 9000), 75);
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
+
+      // Рисуем связи между соседними частицами
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 80) {
+            let lineAlpha = (1 - dist / 80) * 0.15;
+            ctx.strokeStyle = `rgba(168, 85, 247, ${lineAlpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
       for (let p of particles) {
         p.update();
         p.draw();
@@ -674,6 +814,57 @@
     }
     animate();
 
+    // 2. Счетчик посещений: База 856 + каждый вход +1
+    const counterEl = document.getElementById('hitCount');
+    const BASE_VIEWS = 856;
+
+    async function initViews() {
+      let currentVal = BASE_VIEWS;
+      try {
+        // Запрос к живому публичному счетчику
+        const res = await fetch('https://abacus.jasoncameron.dev/hit/sene44-bio/visits');
+        if (res.ok) {
+          const data = await res.json();
+          currentVal = BASE_VIEWS + (data.value || 1);
+        } else {
+          fallbackLocalCounter();
+          return;
+        }
+      } catch (err) {
+        fallbackLocalCounter();
+        return;
+      }
+      animateNumber(currentVal);
+    }
+
+    function fallbackLocalCounter() {
+      let localHits = parseInt(localStorage.getItem('s44_hits') || '0', 10) + 1;
+      localStorage.setItem('s44_hits', localHits);
+      animateNumber(BASE_VIEWS + localHits);
+    }
+
+    function animateNumber(target) {
+      let start = Math.max(BASE_VIEWS, target - 35);
+      let duration = 900;
+      let startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let progress = Math.min((timestamp - startTime) / duration, 1);
+        let val = Math.floor(progress * (target - start) + start);
+        counterEl.innerText = val.toLocaleString();
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          counterEl.innerText = target.toLocaleString();
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    initViews();
+
+    // 3. Share Button
     const shareBtn = document.getElementById('shareBtn');
     const toast = document.getElementById('toast');
 
