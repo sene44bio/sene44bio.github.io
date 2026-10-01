@@ -77,7 +77,7 @@
       justify-content: flex-start;
       position: relative;
       overflow-x: hidden;
-      padding: 24px 16px 120px;
+      padding: 10px 14px 105px; /* Компактный отступ сверху и снизу */
     }
 
     #bg-canvas {
@@ -91,8 +91,8 @@
 
     .ambient-glow {
       position: fixed;
-      width: 480px;
-      height: 480px;
+      width: 440px;
+      height: 440px;
       border-radius: 50%;
       filter: blur(140px);
       pointer-events: none;
@@ -128,36 +128,50 @@
       align-items: center;
     }
 
-    .top-actions {
-      width: 100%;
+    /* Компактный Header / Profile */
+    .profile {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      margin-bottom: 18px;
+      text-align: center;
+      margin-bottom: 14px;
+      position: relative;
+      width: 100%;
+    }
+
+    /* Ряд с авой и боковыми кнопками */
+    .avatar-control-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      position: relative;
     }
 
     .badge-status {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 6px 13px;
+      gap: 5px;
+      padding: 5px 10px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.09);
       backdrop-filter: blur(14px);
-      font-size: 0.72rem;
+      font-size: 0.64rem;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: #e2e8f0;
+      white-space: nowrap;
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #10b981;
-      box-shadow: 0 0 10px #10b981;
+      box-shadow: 0 0 8px #10b981;
       animation: pulse 2s infinite;
     }
 
@@ -168,8 +182,8 @@
     }
 
     .btn-share {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -180,6 +194,7 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: all 0.25s ease;
+      flex-shrink: 0;
     }
     .btn-share:hover {
       color: #fff;
@@ -187,36 +202,17 @@
       transform: translateY(-2px) scale(1.05);
     }
 
-    /* Профиль и визуализатор */
-    .profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 22px;
-      position: relative;
-    }
-
-    .avatar-block {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 15px;
-    }
-
-    /* Контейнер с холстом спектрального визуализатора */
+    /* Аватарка с визуализатором */
     .avatar-wrapper {
       position: relative;
-      width: 190px;
-      height: 190px;
-      margin-bottom: 8px;
+      width: 150px;
+      height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
-    /* Холст, рисующий звуковые лучи прямо под ритм */
     #visualizerCanvas {
       position: absolute;
       inset: 0;
@@ -226,11 +222,10 @@
       z-index: 1;
     }
 
-    /* Аватар с басовым скачком (Bass Bounce) */
     .avatar-inner-box {
       position: relative;
-      width: 104px;
-      height: 104px;
+      width: 88px;
+      height: 88px;
       border-radius: 50%;
       z-index: 2;
       display: flex;
@@ -242,7 +237,7 @@
 
     .avatar-ring {
       position: absolute;
-      inset: -4px;
+      inset: -3px;
       border-radius: 50%;
       background: conic-gradient(from 0deg, #ff334b, #3b82f6, #a855f7, #10b981, #ff334b);
       opacity: 0.9;
@@ -261,7 +256,7 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #07080c;
+      border: 2.5px solid #07080c;
       background: #111;
       display: block;
       z-index: 3;
@@ -269,16 +264,16 @@
 
     .avatar-badge {
       position: absolute;
-      bottom: 2px;
-      right: 2px;
-      width: 24px;
-      height: 24px;
+      bottom: 1px;
+      right: 1px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: #07080c;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #38bdf8;
       z-index: 4;
     }
@@ -286,27 +281,21 @@
     .views-counter {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      padding: 4px 11px;
+      padding: 3px 9px;
       border-radius: 999px;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
       color: #cbd5e1;
-      margin-bottom: 12px;
+      margin-top: 2px;
+      margin-bottom: 6px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
     }
-    .views-counter:hover {
-      border-color: rgba(168, 85, 247, 0.5);
-      background: rgba(168, 85, 247, 0.1);
-      transform: scale(1.04);
-    }
-    .views-counter svg {
-      color: #a855f7;
-    }
+    .views-counter svg { color: #a855f7; }
     .views-num {
       color: #f8fafc;
       font-family: 'Space Grotesk', monospace;
@@ -316,10 +305,10 @@
 
     .artist-name {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.25rem;
+      font-size: 1.95rem;
       font-weight: 900;
       letter-spacing: 0.05em;
-      line-height: 1.1;
+      line-height: 1.05;
       display: inline-flex;
       align-items: baseline;
       justify-content: center;
@@ -339,12 +328,12 @@
     }
 
     .artist-roles {
-      font-size: 0.74rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     /* Links Grid */
@@ -352,7 +341,7 @@
       width: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 8px;
     }
 
     @media (min-width: 520px) {
@@ -364,7 +353,6 @@
       }
     }
 
-    /* Скрываем YouTube только на смартфонах */
     @media (max-width: 519px) {
       .hide-on-mobile {
         display: none !important;
@@ -375,11 +363,11 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 13px;
-      padding: 13px 15px;
+      gap: 11px;
+      padding: 10px 13px; /* Компактнее по высоте */
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 14px;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       text-decoration: none;
@@ -402,63 +390,34 @@
       pointer-events: none;
     }
 
-    .card:hover::after {
-      left: 140%;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--card-hover-border);
-    }
-    .card:active {
-      transform: scale(0.985);
-    }
+    .card:hover::after { left: 140%; }
+    .card:hover { transform: translateY(-2px); border-color: var(--card-hover-border); }
+    .card:active { transform: scale(0.985); }
 
     .icon-box {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       transition: transform 0.25s ease;
     }
-    .card:hover .icon-box {
-      transform: scale(1.08) rotate(2deg);
-    }
+    .card:hover .icon-box { transform: scale(1.08) rotate(2deg); }
 
-    .card-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .card-title-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .card-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .card-desc {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
+    .card-content { flex: 1; min-width: 0; }
+    .card-title-row { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+    .card-title { font-size: 0.88rem; font-weight: 700; color: #fff; }
+    .card-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
 
     .card-badge {
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 5px;
+      padding: 1px 6px;
+      border-radius: 4px;
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
@@ -468,10 +427,7 @@
       transition: all 0.25s ease;
       flex-shrink: 0;
     }
-    .card:hover .arrow-icon {
-      color: #fff;
-      transform: translateX(4px);
-    }
+    .card:hover .arrow-icon { color: #fff; transform: translateX(3px); }
 
     .card-ym {
       background: linear-gradient(100deg, rgba(255, 51, 75, 0.18), rgba(16, 18, 27, 0.85));
@@ -496,7 +452,6 @@
     .card-inst .icon-box { background: rgba(225, 48, 108, 0.14); color: var(--accent-inst); border: 1px solid rgba(225, 48, 108, 0.25); }
     .card-priv .icon-box { background: rgba(168, 85, 247, 0.14); color: var(--accent-priv); border: 1px solid rgba(168, 85, 247, 0.25); }
 
-    /* Fandom Wiki (Full-width на ПК, Биография) */
     .card-wiki {
       background: linear-gradient(110deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.09), rgba(16, 18, 27, 0.9));
       border: 1px solid rgba(16, 185, 129, 0.4);
@@ -512,7 +467,6 @@
       color: #6ee7b7;
     }
 
-    /* Анонимное сообщение (Full-width на ПК) */
     .card-anon {
       background: linear-gradient(110deg, rgba(245, 158, 11, 0.15), rgba(239, 68, 68, 0.09), rgba(16, 18, 27, 0.9));
       border: 1px solid rgba(245, 158, 11, 0.4);
@@ -543,107 +497,71 @@
       pointer-events: none;
       transition: opacity 0.25s ease;
     }
-    .modal-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .modal-backdrop.open { opacity: 1; pointer-events: auto; }
     .modal-window {
       background: #10121b;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       width: 100%;
       max-width: 440px;
-      padding: 22px;
+      padding: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       transform: translateY(20px) scale(0.96);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .modal-backdrop.open .modal-window {
-      transform: translateY(0) scale(1);
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .modal-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .modal-close {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-    .modal-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
+    .modal-backdrop.open .modal-window { transform: translateY(0) scale(1); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .modal-title { font-size: 1.05rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 7px; }
+    .modal-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.3rem; line-height: 1; }
+    .modal-desc { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
     .anon-textarea {
       width: 100%;
-      height: 110px;
+      height: 100px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
-      padding: 12px;
+      padding: 11px;
       color: #fff;
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       resize: none;
       outline: none;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       transition: border-color 0.2s;
     }
-    .anon-textarea:focus {
-      border-color: #f59e0b;
-    }
+    .anon-textarea:focus { border-color: #f59e0b; }
     .anon-submit-btn {
       width: 100%;
-      padding: 12px;
+      padding: 11px;
       border: none;
       border-radius: 12px;
       background: linear-gradient(135deg, #f59e0b, #ef4444);
       color: #fff;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       transition: transform 0.2s, opacity 0.2s;
     }
-    .anon-submit-btn:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
-    }
-    .anon-submit-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .anon-submit-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .anon-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* Плавающий плеер */
     .sticky-player {
       position: fixed;
-      bottom: 16px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 28px);
+      width: calc(100% - 24px);
       max-width: 520px;
       background: rgba(16, 18, 27, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 12px 18px;
+      border-radius: 18px;
+      padding: 10px 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
       z-index: 90;
     }
@@ -651,17 +569,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
     .player-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       min-width: 0;
     }
     .player-play-btn {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: none;
       background: linear-gradient(135deg, #a855f7, #3b82f6);
@@ -674,32 +592,27 @@
       transition: transform 0.2s;
       box-shadow: 0 4px 14px rgba(168, 85, 247, 0.45);
     }
-    .player-play-btn:hover {
-      transform: scale(1.08);
-    }
-    .player-info {
-      min-width: 0;
-    }
+    .player-play-btn:hover { transform: scale(1.08); }
+    .player-info { min-width: 0; }
     .player-title {
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    
     .player-meta {
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     .mini-wave {
       display: flex;
       align-items: flex-end;
       gap: 2px;
-      height: 10px;
+      height: 9px;
     }
     .mini-wave span {
       width: 2px;
@@ -713,17 +626,17 @@
 
     @keyframes wave {
       0% { height: 3px; }
-      100% { height: 10px; background: #38bdf8; }
+      100% { height: 9px; background: #38bdf8; }
     }
 
     .player-sub {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       color: #a855f7;
       font-weight: 700;
       letter-spacing: 0.04em;
     }
     .player-time {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-family: 'Space Grotesk', monospace;
       color: var(--text-muted);
       flex-shrink: 0;
@@ -733,14 +646,14 @@
       width: 100%;
       display: flex;
       align-items: center;
-      padding: 4px 0;
+      padding: 2px 0;
     }
 
     .seek-slider {
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
-      height: 6px;
+      height: 5px;
       background: rgba(255, 255, 255, 0.12);
       border-radius: 99px;
       outline: none;
@@ -751,8 +664,8 @@
     .seek-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       background: #f8fafc;
       box-shadow: 0 0 10px #38bdf8, 0 0 4px #a855f7;
@@ -761,13 +674,13 @@
     }
     .seek-slider::-webkit-slider-thumb:hover,
     .seek-slider:active::-webkit-slider-thumb {
-      transform: scale(1.35);
+      transform: scale(1.3);
       background: #38bdf8;
     }
 
     .seek-slider::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       background: #f8fafc;
       box-shadow: 0 0 10px #38bdf8;
@@ -776,8 +689,8 @@
     }
 
     footer {
-      margin-top: 28px;
-      font-size: 0.72rem;
+      margin-top: 18px;
+      font-size: 0.7rem;
       color: #64748b;
       letter-spacing: 0.05em;
       text-align: center;
@@ -785,13 +698,13 @@
 
     .toast {
       position: fixed;
-      bottom: 84px;
+      bottom: 78px;
       background: rgba(15, 23, 42, 0.95);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       backdrop-filter: blur(12px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -801,10 +714,7 @@
       pointer-events: none;
       z-index: 100;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -814,47 +724,46 @@
   <div class="ambient-glow glow-2"></div>
 
   <main class="container">
-    
-    <header class="top-actions">
-      <div class="badge-status">
-        <span class="status-dot"></span>
-        <span>Online • Music Streaming</span>
-      </div>
-      <button class="btn-share" id="shareBtn" title="Поделиться" aria-label="Поделиться">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3"></circle>
-          <circle cx="6" cy="12" r="3"></circle>
-          <circle cx="18" cy="19" r="3"></circle>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-        </svg>
-      </button>
-    </header>
 
     <section class="profile">
-      <div class="avatar-block">
+      <!-- Компактный ряд: Статус слева + Ава по центру + Поделиться справа -->
+      <div class="avatar-control-row">
+        <div class="badge-status">
+          <span class="status-dot"></span>
+          <span>Online • Stream</span>
+        </div>
+
         <div class="avatar-wrapper">
-          <!-- Canvas спектрального анализатора (YouTube Trap Beat style) -->
-          <canvas id="visualizerCanvas" width="380" height="380"></canvas>
-          
+          <canvas id="visualizerCanvas" width="300" height="300"></canvas>
           <div class="avatar-inner-box" id="avatarBox">
             <div class="avatar-ring"></div>
             <img src="avatar.jpg" alt="Sene44" class="avatar-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'">
             <div class="avatar-badge" title="Verified Artist">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
               </svg>
             </div>
           </div>
         </div>
 
-        <div class="views-counter" title="Всего посещений страницы">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
+        <button class="btn-share" id="shareBtn" title="Поделиться" aria-label="Поделиться">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
           </svg>
-          <span class="views-num" id="hitCount">856</span> views
-        </div>
+        </button>
+      </div>
+
+      <!-- Счётчик просмотров под авой -->
+      <div class="views-counter" title="Всего посещений страницы">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <span class="views-num" id="hitCount">856</span> views
       </div>
       
       <h1 class="artist-name">SENE44</h1>
@@ -866,7 +775,7 @@
       <!-- 1. Yandex Music -->
       <a href="https://music.yandex.ru/artist/25966786?utm_source=desktop&utm_medium=copy_link" target="_blank" rel="noopener noreferrer" class="card card-full card-ym">
         <div class="icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
           </svg>
         </div>
@@ -877,7 +786,7 @@
           </div>
           <div class="card-desc">Слушать все релизы и треки</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -885,7 +794,7 @@
       <!-- 2. Telegram Channel -->
       <a href="https://t.me/Sene4ka_Official" target="_blank" rel="noopener noreferrer" class="card card-tg">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.98-1.73 6.64-2.88 7.97-3.44 3.79-1.58 4.58-1.85 5.1-1.86.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.19-.04.35z"/>
           </svg>
         </div>
@@ -893,7 +802,7 @@
           <div class="card-title">Telegram channel</div>
           <div class="card-desc">Личный блог</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -901,7 +810,7 @@
       <!-- 3. Telegram Личка -->
       <a href="https://t.me/Real_S4" target="_blank" rel="noopener noreferrer" class="card card-tgpm">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/>
           </svg>
         </div>
@@ -909,7 +818,7 @@
           <div class="card-title">Telegram Личка</div>
           <div class="card-desc">Личка & связь</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -917,7 +826,7 @@
       <!-- 4. VK Личка -->
       <a href="https://vk.ru/sene4kalive" target="_blank" rel="noopener noreferrer" class="card card-vk">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
             <path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.054-1.716-1.036-1.01-1.498-1.143-1.752-1.143-.356 0-.457.102-.457.584v1.65c0 .432-.14.69-1.27.69-1.88 0-3.962-1.143-5.435-3.277-2.235-3.15-2.844-5.512-2.844-5.994 0-.254.102-.483.584-.483h1.744c.432 0 .597.203.762.66.838 2.413 2.235 4.546 2.819 4.546.216 0 .317-.102.317-.66V10.22c-.063-1.194-.71-1.295-.71-1.714 0-.203.165-.406.432-.406h2.743c.368 0 .508.19.508.622v3.352c0 .356.165.483.267.483.216 0 .394-.127.787-.52 1.219-1.372 2.083-3.48 2.083-3.48.114-.241.317-.457.75-.457h1.744c.52 0 .635.267.52.622-.216.99-2.31 3.962-2.31 3.962-.19.305-.267.444 0 .8.38.508 1.638 1.6 2.476 2.641.635.787.889 1.257.495 1.65z"/>
           </svg>
         </div>
@@ -925,7 +834,7 @@
           <div class="card-title">VK Личка</div>
           <div class="card-desc">Связь ВКонтакте</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -933,7 +842,7 @@
       <!-- 5. YouTube (скрыт только на смартфонах) -->
       <a href="https://www.youtube.com/@Sene44_Official" target="_blank" rel="noopener noreferrer" class="card card-yt hide-on-mobile">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
           </svg>
         </div>
@@ -941,7 +850,7 @@
           <div class="card-title">YouTube</div>
           <div class="card-desc">Клипы & треки</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -949,7 +858,7 @@
       <!-- 6. Instagram -->
       <a href="https://www.instagram.com/sene44_official/" target="_blank" rel="noopener noreferrer" class="card card-inst">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </div>
@@ -957,7 +866,7 @@
           <div class="card-title">Instagram</div>
           <div class="card-desc">Фото & сторис</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -965,7 +874,7 @@
       <!-- 7. Telegram Приват -->
       <a href="https://t.me/+mMTdu-pHBos0ZTYy" target="_blank" rel="noopener noreferrer" class="card card-priv">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
@@ -974,7 +883,7 @@
           <div class="card-title">Telegram Приват</div>
           <div class="card-desc">Общение & друзья</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -982,7 +891,7 @@
       <!-- 8. Fandom Wiki (Full-width на ПК, Биография) -->
       <a href="https://sene44.fandom.com/ru/wiki/Sene44_Вики" target="_blank" rel="noopener noreferrer" class="card card-full card-wiki">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
             <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
           </svg>
         </div>
@@ -993,7 +902,7 @@
           </div>
           <div class="card-desc">Биография</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </a>
@@ -1001,7 +910,7 @@
       <!-- 9. Анонимное сообщение (Full-width на ПК) -->
       <div class="card card-full card-anon" id="openAnonBtn">
         <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
           </svg>
         </div>
@@ -1012,7 +921,7 @@
           </div>
           <div class="card-desc">Sene44 не узнает кто отправил.</div>
         </div>
-        <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="arrow-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </div>
@@ -1040,16 +949,16 @@
     </div>
   </div>
 
-  <!-- Плавающий плеер с ползунком -->
+  <!-- Плавающий плеер -->
   <div class="sticky-player">
     <audio id="audioPlayer" src="track.mp3" preload="metadata" crossorigin="anonymous"></audio>
     <div class="player-main-row">
       <div class="player-left">
         <button class="player-play-btn" id="playBtn" title="Воспроизвести">
-          <svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <svg id="playIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <svg id="pauseIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+          <svg id="pauseIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
             <rect x="6" y="4" width="4" height="16"></rect>
             <rect x="14" y="4" width="4" height="16"></rect>
           </svg>
@@ -1080,7 +989,7 @@
     const bgCtx = bgCanvas.getContext('2d');
     let width, height;
     let particles = [];
-    let mouse = { x: null, y: null, radius: 100 };
+    let mouse = { x: null, y: null, radius: 90 };
 
     window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
     window.addEventListener('touchmove', (e) => {
@@ -1100,7 +1009,7 @@
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.6;
+        this.size = Math.random() * 2 + 0.5;
         this.speedX = (Math.random() - 0.5) * 0.45;
         this.speedY = (Math.random() - 0.5) * 0.45;
         this.alpha = Math.random() * 0.6 + 0.2;
@@ -1131,7 +1040,7 @@
       }
     }
 
-    const particleCount = Math.min(Math.floor((width * height) / 9000), 75);
+    const particleCount = Math.min(Math.floor((width * height) / 9500), 70);
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
     function animateBg() {
@@ -1141,8 +1050,8 @@
           let dx = particles[i].x - particles[j].x;
           let dy = particles[i].y - particles[j].y;
           let dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 80) {
-            let lineAlpha = (1 - dist / 80) * 0.15;
+          if (dist < 75) {
+            let lineAlpha = (1 - dist / 75) * 0.15;
             bgCtx.strokeStyle = `rgba(168, 85, 247, ${lineAlpha})`;
             bgCtx.lineWidth = 0.8;
             bgCtx.beginPath();
@@ -1195,7 +1104,7 @@
     }
     initViews();
 
-    // 3. НАСТОЯЩИЙ WEB AUDIO API ВИЗУАЛИЗАТОР (BASS BOUNCE + CIRCULAR FFT SPECTRUM)
+    // 3. WEB AUDIO API СПЕКТРАЛЬНЫЙ АНАЛИЗАТОР
     const audio = document.getElementById('audioPlayer');
     const playBtn = document.getElementById('playBtn');
     const playIcon = document.getElementById('playIcon');
@@ -1228,11 +1137,10 @@
         dataArray = new Uint8Array(analyser.frequencyBinCount);
         isAudioInitialized = true;
       } catch (e) {
-        console.warn("AudioContext fallback/blocked", e);
+        console.warn("AudioContext init error", e);
       }
     }
 
-    // Рендер частотного спектра вокруг авы
     function renderVisualizer() {
       requestAnimationFrame(renderVisualizer);
 
@@ -1250,32 +1158,24 @@
 
       analyser.getByteFrequencyData(dataArray);
 
-      // Считаем уровень баса (первые 8 частотных бинов: 20Hz - 150Hz)
       let bassSum = 0;
       const bassBins = 8;
-      for (let i = 0; i < bassBins; i++) {
-        bassSum += dataArray[i];
-      }
-      const bassAvg = bassSum / bassBins; // 0 - 255
+      for (let i = 0; i < bassBins; i++) bassSum += dataArray[i];
+      const bassAvg = bassSum / bassBins;
       const bassRatio = bassAvg / 255;
 
-      // 1. Басовый пульс авы (Bass Zoom / Bounce)
-      const scale = 1 + bassRatio * 0.14; // от 1.0 до 1.14x под кик/бас
-      const glowPower = Math.floor(bassRatio * 35);
+      const scale = 1 + bassRatio * 0.12;
+      const glowPower = Math.floor(bassRatio * 30);
       avatarBox.style.transform = `scale(${scale.toFixed(3)})`;
       avatarBox.style.boxShadow = `0 0 ${glowPower}px rgba(255, 51, 75, ${bassRatio * 0.8}), 0 0 ${glowPower * 1.5}px rgba(168, 85, 247, ${bassRatio * 0.6})`;
 
-      // 2. Круговые звуковые лучи (64 полосы)
-      const numBars = 64;
-      const baseRadius = 57; // радиус вокруг авы
+      const numBars = 56;
+      const baseRadius = 48;
 
       for (let i = 0; i < numBars; i++) {
-        // Зеркальное распределение частот по кругу
         const dataIndex = Math.floor((i < numBars / 2 ? i : numBars - i) * 1.8);
         const freqValue = dataArray[dataIndex] || 0;
-        
-        // Высота луча зависит от громкости частоты
-        const barHeight = Math.max(3, (freqValue / 255) * 38);
+        const barHeight = Math.max(2.5, (freqValue / 255) * 32);
         const angle = (i * (360 / numBars)) * (Math.PI / 180);
 
         const x1 = cX + Math.cos(angle) * baseRadius;
@@ -1283,14 +1183,13 @@
         const x2 = cX + Math.cos(angle) * (baseRadius + barHeight);
         const y2 = cY + Math.sin(angle) * (baseRadius + barHeight);
 
-        // Градиент луча (от фиолетового к неоновому циан/малиновому)
         const grad = vCtx.createLinearGradient(x1, y1, x2, y2);
-        grad.addColorStop(0, 'rgba(168, 85, 247, 0.5)');
+        grad.addColorStop(0, 'rgba(168, 85, 247, 0.45)');
         grad.addColorStop(0.5, '#38bdf8');
         grad.addColorStop(1, '#ff334b');
 
         vCtx.strokeStyle = grad;
-        vCtx.lineWidth = 2.5;
+        vCtx.lineWidth = 2.2;
         vCtx.lineCap = 'round';
 
         vCtx.beginPath();
@@ -1368,7 +1267,7 @@
       document.body.classList.remove('is-playing');
     });
 
-    // 4. АНОНИМНЫЕ СООБЩЕНИЯ В ТГ
+    // 4. АНОНИМНЫЕ СООБЩЕНИЯ
     const WORKER_URL = 'https://tg-proxi.arsekshoy00.workers.dev';
     const anonModal = document.getElementById('anonModal');
     const openAnonBtn = document.getElementById('openAnonBtn');
