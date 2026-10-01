@@ -138,6 +138,7 @@
       width: 100%;
     }
 
+    /* Ряд управления: ава строго по центру, боковые кнопки абсолютно привязаны */
     .avatar-control-row {
       position: relative;
       display: flex;
@@ -487,7 +488,7 @@
       color: #fde68a;
     }
 
-    /* Модалка с вложением фото */
+    /* Модалка с прикреплением только фото */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -537,7 +538,6 @@
     }
     .anon-textarea:focus { border-color: #f59e0b; }
 
-    /* Блок фото */
     .file-attach-row {
       display: flex;
       align-items: center;
@@ -1002,7 +1002,7 @@
 
   </main>
 
-  <!-- Модальное окно анонимки с выбором ФОТО -->
+  <!-- Модальное окно анонимки с выбором ТОЛЬКО ФОТО -->
   <div class="modal-backdrop" id="anonModal">
     <div class="modal-window">
       <div class="modal-header">
@@ -1015,11 +1015,11 @@
       
       <textarea class="anon-textarea" id="anonText" placeholder="Напиши панч, вопрос, вброс или респект..." maxlength="1000"></textarea>
       
-      <!-- Прикрепление только фото -->
+      <!-- Прикрепление только изображений -->
       <div class="file-attach-row">
         <input type="file" id="anonFileInput" class="file-input-hidden" accept="image/*">
         <label for="anonFileInput" class="btn-attach-file">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
             <circle cx="8.5" cy="8.5" r="1.5"></circle>
             <polyline points="21 15 16 10 5 21"></polyline>
@@ -1324,7 +1324,7 @@
       document.body.classList.remove('is-playing');
     });
 
-    // 4. НАДЕЖНАЯ ОТПРАВКА АНОНИМОК (JSON + BASE64 ФОТО)
+    // 4. НАДЕЖНАЯ ОТПРАВКА АНОНИМОК (ФОТО + ТЕКСТ)
     const WORKER_URL = 'https://tg-proxi.arsekshoy00.workers.dev';
     const anonModal = document.getElementById('anonModal');
     const openAnonBtn = document.getElementById('openAnonBtn');
@@ -1335,8 +1335,6 @@
     const filePreview = document.getElementById('filePreview');
     const fileName = document.getElementById('fileName');
     const fileRemoveBtn = document.getElementById('fileRemoveBtn');
-
-    let selectedPhotoBase64 = null;
 
     openAnonBtn.addEventListener('click', () => {
       anonModal.classList.add('open');
@@ -1351,38 +1349,24 @@
       if (e.target === anonModal) anonModal.classList.remove('open');
     });
 
-    // Чтение фото в Base64
     anonFileInput.addEventListener('change', () => {
       if (anonFileInput.files && anonFileInput.files[0]) {
-        const file = anonFileInput.files[0];
-        if (!file.type.startsWith('image/')) {
-          showToast('Можно прикреплять только фото!');
-          anonFileInput.value = '';
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          selectedPhotoBase64 = e.target.result;
-          fileName.innerText = file.name;
-          filePreview.classList.add('active');
-        };
-        reader.readAsDataURL(file);
+        fileName.innerText = anonFileInput.files[0].name;
+        filePreview.classList.add('active');
       }
     });
 
-    // Сброс фото
     fileRemoveBtn.addEventListener('click', () => {
       anonFileInput.value = '';
-      selectedPhotoBase64 = null;
       filePreview.classList.remove('active');
       fileName.innerText = '';
     });
 
     sendAnonBtn.addEventListener('click', async () => {
       const msg = anonText.value.trim();
+      const file = anonFileInput.files ? anonFileInput.files[0] : null;
 
-      if (!msg && !selectedPhotoBase64) {
+      if (!msg && !file) {
         showToast('Напиши сообщение или прикрепи фото');
         return;
       }
@@ -1390,40 +1374,30 @@
       sendAnonBtn.disabled = true;
       sendAnonBtn.innerText = 'Отправка...';
 
-      // Контроллер отмены при зависании сети (таймаут 12 секунд)
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 12000);
+      const formData = new FormData();
+      if (msg) formData.append('text', msg);
+      if (file) formData.append('file', file);
 
       try {
         const res = await fetch(WORKER_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            text: msg,
-            photoBase64: selectedPhotoBase64
-          }),
-          signal: controller.signal
+          body: formData
         });
-        clearTimeout(timeoutId);
 
-        if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.success) {
           anonText.value = '';
           anonFileInput.value = '';
-          selectedPhotoBase64 = null;
           filePreview.classList.remove('active');
           fileName.innerText = '';
           anonModal.classList.remove('open');
-          showToast('⚡ Сообщение отправлено!');
+          showToast('⚡ Отправлено прямо в ТГ!');
         } else {
-          showToast('Ошибка сервера. Попробуй позже');
+          showToast(data.error ? `Ошибка: ${data.error}` : 'Ошибка отправки. Попробуй позже');
         }
       } catch (err) {
-        clearTimeout(timeoutId);
-        if (err.name === 'AbortError') {
-          showToast('Таймаут соединения. Попробуй еще раз');
-        } else {
-          showToast('Сбой соединения');
-        }
+        showToast('Сбой соединения с сервером');
       } finally {
         sendAnonBtn.disabled = false;
         sendAnonBtn.innerText = 'Отправить';
