@@ -128,7 +128,6 @@
       align-items: center;
     }
 
-    /* Профиль строго по центру */
     .profile {
       display: flex;
       flex-direction: column;
@@ -139,7 +138,6 @@
       width: 100%;
     }
 
-    /* Ряд управления: ава ровно по центру, кнопки по краям */
     .avatar-control-row {
       position: relative;
       display: flex;
@@ -211,7 +209,6 @@
       transform: translateY(calc(-50% - 2px)) scale(1.05);
     }
 
-    /* Аватарка строго по центру */
     .avatar-wrapper {
       position: relative;
       width: 150px;
@@ -345,7 +342,6 @@
       margin-top: 4px;
     }
 
-    /* Links Grid */
     .links-grid {
       width: 100%;
       display: grid;
@@ -491,7 +487,7 @@
       color: #fde68a;
     }
 
-    /* Модалка */
+    /* Модалка с вложениями */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -519,13 +515,14 @@
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .modal-backdrop.open .modal-window { transform: translateY(0) scale(1); }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .modal-title { font-size: 1.05rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 7px; }
     .modal-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.3rem; line-height: 1; }
     .modal-desc { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+    
     .anon-textarea {
       width: 100%;
-      height: 100px;
+      height: 90px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
@@ -535,19 +532,83 @@
       font-size: 0.86rem;
       resize: none;
       outline: none;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       transition: border-color 0.2s;
     }
     .anon-textarea:focus { border-color: #f59e0b; }
+
+    /* Блок прикрепления файлов */
+    .file-attach-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .file-input-hidden {
+      display: none;
+    }
+
+    .btn-attach-file {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      color: #cbd5e1;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-attach-file:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .file-preview {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      color: #fde68a;
+      max-width: 220px;
+    }
+    .file-preview.active {
+      display: inline-flex;
+    }
+    .file-preview-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .file-remove-btn {
+      background: transparent;
+      border: none;
+      color: #f87171;
+      cursor: pointer;
+      font-size: 0.85rem;
+      line-height: 1;
+      padding: 0 2px;
+    }
+
     .anon-submit-btn {
       width: 100%;
-      padding: 11px;
+      padding: 12px;
       border: none;
       border-radius: 12px;
       background: linear-gradient(135deg, #f59e0b, #ef4444);
       color: #fff;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: transform 0.2s, opacity 0.2s;
     }
@@ -735,7 +796,6 @@
   <main class="container">
 
     <section class="profile">
-      <!-- Ровный центрированный блок: ава по центру, кнопки по краям -->
       <div class="avatar-control-row">
         <div class="badge-status">
           <span class="status-dot"></span>
@@ -942,7 +1002,7 @@
 
   </main>
 
-  <!-- Модальное окно анонимки -->
+  <!-- Модальное окно анонимки с прикреплением файлов -->
   <div class="modal-backdrop" id="anonModal">
     <div class="modal-window">
       <div class="modal-header">
@@ -951,9 +1011,27 @@
         </div>
         <button class="modal-close" id="closeAnonBtn">&times;</button>
       </div>
-      <p class="modal-desc">Sene44 не узнает кто отправил. Сообщение улетит прямо в бота.</p>
+      <p class="modal-desc">Sene44 не узнает кто отправил. Можно прикрепить фото, бит или файл.</p>
+      
       <textarea class="anon-textarea" id="anonText" placeholder="Напиши панч, вопрос, вброс или респект..." maxlength="1000"></textarea>
-      <button class="anon-submit-btn" id="sendAnonBtn">Отправить Сене ⚡</button>
+      
+      <!-- Прикрепление файла -->
+      <div class="file-attach-row">
+        <input type="file" id="anonFileInput" class="file-input-hidden">
+        <label for="anonFileInput" class="btn-attach-file">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+          </svg>
+          <span>Прикрепить файл</span>
+        </label>
+        
+        <div class="file-preview" id="filePreview">
+          <span class="file-preview-name" id="fileName">file.png</span>
+          <button type="button" class="file-remove-btn" id="fileRemoveBtn" title="Удалить файл">&times;</button>
+        </div>
+      </div>
+
+      <button class="anon-submit-btn" id="sendAnonBtn">Отправить</button>
     </div>
   </div>
 
@@ -992,7 +1070,7 @@
   <div class="toast" id="toast">Ссылка скопирована в буфер!</div>
 
   <script>
-    // 1. ЛЕГКИЙ И ОПТИМИЗИРОВАННЫЙ СНЕГОПАД (БЕЗ ФИЗИКИ И КАСАНИЙ)
+    // 1. СНЕГОПАД НА CANVAS
     const bgCanvas = document.getElementById('bg-canvas');
     const bgCtx = bgCanvas.getContext('2d');
     let width, height;
@@ -1006,9 +1084,7 @@
     resize();
 
     class Snowflake {
-      constructor() {
-        this.reset(true);
-      }
+      constructor() { this.reset(true); }
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : -10;
@@ -1023,7 +1099,6 @@
         this.swing += this.swingSpeed;
         this.x += Math.sin(this.swing) * 0.35 + this.speedX;
         this.y += this.speedY;
-
         if (this.y > height + 10 || this.x < -10 || this.x > width + 10) {
           this.reset(false);
         }
@@ -1037,16 +1112,11 @@
     }
 
     const totalFlakes = Math.min(Math.floor(width / 16), 55);
-    for (let i = 0; i < totalFlakes; i++) {
-      flakes.push(new Snowflake());
-    }
+    for (let i = 0; i < totalFlakes; i++) flakes.push(new Snowflake());
 
     function animateSnow() {
       bgCtx.clearRect(0, 0, width, height);
-      for (let f of flakes) {
-        f.update();
-        f.draw();
-      }
+      for (let f of flakes) { f.update(); f.draw(); }
       requestAnimationFrame(animateSnow);
     }
     animateSnow();
@@ -1252,13 +1322,17 @@
       document.body.classList.remove('is-playing');
     });
 
-    // 4. АНОНИМНЫЕ СООБЩЕНИЯ
+    // 4. АНОНИМНЫЕ СООБЩЕНИЯ С ФАЙЛАМИ
     const WORKER_URL = 'https://tg-proxi.arsekshoy00.workers.dev';
     const anonModal = document.getElementById('anonModal');
     const openAnonBtn = document.getElementById('openAnonBtn');
     const closeAnonBtn = document.getElementById('closeAnonBtn');
     const sendAnonBtn = document.getElementById('sendAnonBtn');
     const anonText = document.getElementById('anonText');
+    const anonFileInput = document.getElementById('anonFileInput');
+    const filePreview = document.getElementById('filePreview');
+    const fileName = document.getElementById('fileName');
+    const fileRemoveBtn = document.getElementById('fileRemoveBtn');
 
     openAnonBtn.addEventListener('click', () => {
       anonModal.classList.add('open');
@@ -1273,27 +1347,50 @@
       if (e.target === anonModal) anonModal.classList.remove('open');
     });
 
+    // Выбор файла
+    anonFileInput.addEventListener('change', () => {
+      if (anonFileInput.files && anonFileInput.files[0]) {
+        fileName.innerText = anonFileInput.files[0].name;
+        filePreview.classList.add('active');
+      }
+    });
+
+    // Удаление прикрепленного файла
+    fileRemoveBtn.addEventListener('click', () => {
+      anonFileInput.value = '';
+      filePreview.classList.remove('active');
+      fileName.innerText = '';
+    });
+
     sendAnonBtn.addEventListener('click', async () => {
       const msg = anonText.value.trim();
-      if (!msg) {
-        showToast('Напиши хоть что-нибудь :)');
+      const hasFile = anonFileInput.files && anonFileInput.files[0];
+
+      if (!msg && !hasFile) {
+        showToast('Напиши сообщение или прикрепи файл');
         return;
       }
 
       sendAnonBtn.disabled = true;
       sendAnonBtn.innerText = 'Отправка...';
 
+      const formData = new FormData();
+      if (msg) formData.append('text', msg);
+      if (hasFile) formData.append('file', anonFileInput.files[0]);
+
       try {
         const res = await fetch(WORKER_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: msg })
+          body: formData
         });
 
         if (res.ok) {
           anonText.value = '';
+          anonFileInput.value = '';
+          filePreview.classList.remove('active');
+          fileName.innerText = '';
           anonModal.classList.remove('open');
-          showToast('⚡ Доставлено Сене в ТГ!');
+          showToast('⚡ Сообщение отправлено!');
         } else {
           showToast('Ошибка отправки. Попробуй позже');
         }
@@ -1301,7 +1398,7 @@
         showToast('Сбой соединения');
       } finally {
         sendAnonBtn.disabled = false;
-        sendAnonBtn.innerText = 'Отправить Сене ⚡';
+        sendAnonBtn.innerText = 'Отправить';
       }
     });
 
