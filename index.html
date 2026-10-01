@@ -1001,7 +1001,7 @@
 
   </main>
 
-  <!-- Модальное окно анонимки с выбором ТОЛЬКО ФОТО -->
+  <!-- Модальное окно анонимки -->
   <div class="modal-backdrop" id="anonModal">
     <div class="modal-window">
       <div class="modal-header">
@@ -1014,7 +1014,6 @@
       
       <textarea class="anon-textarea" id="anonText" placeholder="Напиши панч, вопрос, вброс или респект..." maxlength="1000"></textarea>
       
-      <!-- Прикрепление фото -->
       <div class="file-attach-row">
         <input type="file" id="anonFileInput" class="file-input-hidden" accept="image/*">
         <label for="anonFileInput" class="btn-attach-file">
@@ -1323,7 +1322,7 @@
       document.body.classList.remove('is-playing');
     });
 
-    // 4. НАДЕЖНАЯ ОТПРАВКА АНОНИМОК СО СЖАТИЕМ ДЛЯ МОБИЛОК
+    // 4. ЖЕЛЕЗОБЕТОННАЯ ОТПРАВКА (JSON ДЛЯ ТЕКСТА, FORMDATA ДЛЯ ФОТО)
     const WORKER_URL = 'https://tg-proxi.arsekshoy00.workers.dev';
     const anonModal = document.getElementById('anonModal');
     const openAnonBtn = document.getElementById('openAnonBtn');
@@ -1361,7 +1360,7 @@
       fileName.innerText = '';
     });
 
-    // Быстрое сжатие фото перед отправкой (для телефонов)
+    // Быстрое сжатие фото перед отправкой (для мобилок)
     async function compressImage(file) {
       return new Promise((resolve) => {
         if (!file.type.startsWith('image/')) return resolve(file);
@@ -1373,8 +1372,8 @@
           img.src = e.target.result;
           img.onload = () => {
             const canvas = document.createElement('canvas');
-            const MAX_WIDTH = 1280;
-            const MAX_HEIGHT = 1280;
+            const MAX_WIDTH = 1200;
+            const MAX_HEIGHT = 1200;
             let width = img.width;
             let height = img.height;
 
@@ -1397,7 +1396,7 @@
 
             canvas.toBlob((blob) => {
               if (blob) {
-                const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, ".jpg"), {
+                const compressedFile = new File([blob], "photo.jpg", {
                   type: 'image/jpeg',
                   lastModified: Date.now()
                 });
@@ -1405,7 +1404,7 @@
               } else {
                 resolve(file);
               }
-            }, 'image/jpeg', 0.82);
+            }, 'image/jpeg', 0.8);
           };
           img.onerror = () => resolve(file);
         };
@@ -1425,23 +1424,38 @@
       sendAnonBtn.disabled = true;
       sendAnonBtn.innerText = 'Отправка...';
 
-      if (file) {
-        try {
-          file = await compressImage(file);
-        } catch(e) {
-          console.warn('Compression error', e);
-        }
-      }
-
-      const formData = new FormData();
-      if (msg) formData.append('text', msg);
-      if (file) formData.append('file', file);
-
       try {
-        const res = await fetch(WORKER_URL, {
-          method: 'POST',
-          body: formData
-        });
+        let res;
+
+        // Если прикреплено фото — жмем и отправляем через FormData
+        if (file) {
+          try {
+            file = await compressImage(file);
+          } catch(e) {}
+
+          const formData = new FormData();
+          if (msg) formData.append('text', msg);
+          formData.append('file', file);
+
+          res = await fetch(WORKER_URL, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'omit',
+            body: formData
+          });
+        } 
+        // Если только текст — отправляем железобетонным JSON (работает на любом телефоне)
+        else {
+          res = await fetch(WORKER_URL, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'omit',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: msg })
+          });
+        }
 
         const data = await res.json().catch(() => ({}));
 
@@ -1453,7 +1467,7 @@
           anonModal.classList.remove('open');
           showToast('⚡ Отправлено прямо в ТГ!');
         } else {
-          showToast(data.error ? `Ошибка: ${data.error}` : 'Ошибка отправки');
+          showToast(data.error ? `Ошибка: ${data.error}` : 'Ошибка сервера');
         }
       } catch (err) {
         showToast('Сбой соединения с сервером');
