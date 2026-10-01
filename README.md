@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ SENE44 • Official Bio & Music Ecosystem
+#  SENE44 • Official Bio & Music Ecosystem
 
 [![Website](https://img.shields.io/badge/Live_Site-sene44bio.github.io-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://sene44bio.github.io/)
 [![GitHub stars](https://img.shields.io/github/stars/sene44bio/sene44bio.github.io?style=for-the-badge&color=a855f7)](https://github.com/sene44bio/sene44bio.github.io)
@@ -16,34 +16,34 @@
 
 </div>
 
-## 🌌 О проекте
+##  О проекте
 
 Сайт представляет собой кастомную веб-визитку и медиа-хаб, спроектированный с акцентом на **Zero-Dependency Vanilla Web**, отзывчивый неоновый дизайн, глубокую поисковую оптимизацию (SEO / Schema.org) и встроенные инди-инструменты взаимодействия с аудиторией.
 
-### ✨ Ключевые фичи
+###  Ключевые фичи
 
-- **🎵 Web Audio API Спектральный анализатор:**
+- ** Web Audio API Спектральный анализатор:**
   - Реальная обработка звуковых частот трека через `AudioContext` и `AnalyserNode` без тяжелых библиотек.
   - Круговой частотный эквалайзер на 56 спектральных лучей вокруг аватара.
   - **Bass Bounce Effect:** математический расчет энергии суб-баса (20–150 Hz) с синхронным зумом и неоновым свечением аватара под кик и 808-й бас.
-- **🎧 Встроенный аудиоплеер:**
+- ** Встроенный аудиоплеер:**
   - Плавный range-слайдер перемотки с кастомным бегунком и подсветкой прогресса.
   - Анимированные мини-эквалайзеры и точный тайминг.
-- **📬 Анонимный Drop Box (Anti-Censorship Telegram Gateway):**
+- ** Анонимный Drop Box (Anti-Censorship Telegram Gateway):**
   - Модальное окно для сбора фидбека, панчей и вопросов от слушателей.
   - Защищённый бэкенд на **Cloudflare Workers (`tg-proxi`)**: скрывает токен бота и Chat ID, обходит блокировки API Telegram в РФ и защищает от спама.
-- **❄️ Оптимизированный Canvas FX:**
+- ** Оптимизированный Canvas FX:**
   - Легковесный снегопад с покачиванием по синусоиде на нативном HTML5 Canvas (60+ FPS на мобильных устройствах, минимум нагрузки на CPU/аккумулятор).
-- **👁 Живой счетчик просмотров:**
+- ** Живой счетчик просмотров:**
   - Публичный сетевой счетчик API с автоматическим переключением на `localStorage` при сбоях сети.
-- **🔍 SEO & AI Knowledge Graph Ready:**
+- ** SEO & AI Knowledge Graph Ready:**
   - Вшитая микроразметка `Schema.org/Person` (JSON-LD) для объединения сущностей артиста (Яндекс Музыка, Genius, Fandom, Telegram, VK, YouTube) в поисковиках и AI-моделях.
   - Подтверждённый домен в Google Search Console для ускоренной индексации.
   - Полный комплект тегов Open Graph и Twitter Cards для красивых сниппетов.
 
 ---
 
-## 🛠 Технологический стек
+##  Технологический стек
 
 | Слой | Технологии |
 | :--- | :--- |
@@ -56,7 +56,7 @@
 
 ---
 
-## 🏗 Архитектура отправки сообщений
+##  Архитектура отправки сообщений
 
 ```mermaid
 sequenceDiagram
