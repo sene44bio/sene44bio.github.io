@@ -5,6 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SENE44 • Official Bio</title>
   <meta name="description" content="Sene44 — Developer, Rapper, Blogger. Официальные ссылки, треки, соцсети и комьюнити.">
+
+  <!-- Open Graph / Превью ссылок в Telegram, VK, соцсетях -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="SENE44 • Official Bio">
+  <meta property="og:description" content="Developer • Rapper • Blogger. Все официальные ссылки, музыка и контакты.">
+  <meta property="og:url" content="https://sene44bio.github.io/">
+  <meta property="og:image" content="https://sene44bio.github.io/avatar.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Метатег подтверждения Google Search Console (замени значение content на код из консоли) -->
+  <meta name="google-site-verification" content="aQTXNeyFa3ZnMeDWQ0Oy2TGfb5ByZnQwk7zkUTKpjp8" />
+
+  <!-- Микроразметка Schema.org для привязки личности к Google/Яндекс и AI -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sene44",
+    "alternateName": "Арсений Павлович Калугин",
+    "url": "https://sene44bio.github.io/",
+    "image": "https://sene44bio.github.io/avatar.jpg",
+    "jobTitle": ["Developer", "Rapper", "Blogger"],
+    "sameAs": [
+      "https://music.yandex.ru/artist/25966786",
+      "https://t.me/Sene4ka_Official",
+      "https://vk.ru/sene4kalive",
+      "https://www.youtube.com/@Sene44_Official",
+      "https://www.instagram.com/sene44_official/",
+      "https://genius.com/artists/Sene44",
+      "https://sene44.fandom.com/ru/wiki/Sene44_Вики"
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
@@ -751,7 +785,6 @@
         this.baseAlpha = this.alpha;
       }
       update() {
-        // Мышь отталкивает частицы
         if (mouse.x !== null) {
           let dx = mouse.x - this.x;
           let dy = mouse.y - this.y;
@@ -787,7 +820,6 @@
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Рисуем связи между соседними частицами
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           let dx = particles[i].x - particles[j].x;
@@ -821,7 +853,6 @@
     async function initViews() {
       let currentVal = BASE_VIEWS;
       try {
-        // Запрос к живому публичному счетчику
         const res = await fetch('https://abacus.jasoncameron.dev/hit/sene44-bio/visits');
         if (res.ok) {
           const data = await res.json();
