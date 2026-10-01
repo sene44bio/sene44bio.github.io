@@ -77,7 +77,7 @@
       justify-content: flex-start;
       position: relative;
       overflow-x: hidden;
-      padding: 10px 14px 105px; /* Компактный отступ сверху и снизу */
+      padding: 10px 14px 105px;
     }
 
     #bg-canvas {
@@ -128,7 +128,7 @@
       align-items: center;
     }
 
-    /* Компактный Header / Profile */
+    /* Профиль строго по центру */
     .profile {
       display: flex;
       flex-direction: column;
@@ -139,17 +139,21 @@
       width: 100%;
     }
 
-    /* Ряд с авой и боковыми кнопками */
+    /* Ряд управления: ава ровно по центру, кнопки по краям */
     .avatar-control-row {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       width: 100%;
-      position: relative;
+      min-height: 150px;
     }
 
     .badge-status {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
       display: inline-flex;
       align-items: center;
       gap: 5px;
@@ -164,6 +168,7 @@
       text-transform: uppercase;
       color: #e2e8f0;
       white-space: nowrap;
+      z-index: 10;
     }
 
     .status-dot {
@@ -182,6 +187,10 @@
     }
 
     .btn-share {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
       width: 34px;
       height: 34px;
       border-radius: 50%;
@@ -194,15 +203,15 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: all 0.25s ease;
-      flex-shrink: 0;
+      z-index: 10;
     }
     .btn-share:hover {
       color: #fff;
       background: rgba(255, 255, 255, 0.14);
-      transform: translateY(-2px) scale(1.05);
+      transform: translateY(calc(-50% - 2px)) scale(1.05);
     }
 
-    /* Аватарка с визуализатором */
+    /* Аватарка строго по центру */
     .avatar-wrapper {
       position: relative;
       width: 150px;
@@ -210,7 +219,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      margin: 0 auto;
     }
 
     #visualizerCanvas {
@@ -364,7 +373,7 @@
       display: flex;
       align-items: center;
       gap: 11px;
-      padding: 10px 13px; /* Компактнее по высоте */
+      padding: 10px 13px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
@@ -726,7 +735,7 @@
   <main class="container">
 
     <section class="profile">
-      <!-- Компактный ряд: Статус слева + Ава по центру + Поделиться справа -->
+      <!-- Ровный центрированный блок: ава по центру, кнопки по краям -->
       <div class="avatar-control-row">
         <div class="badge-status">
           <span class="status-dot"></span>
@@ -757,7 +766,6 @@
         </button>
       </div>
 
-      <!-- Счётчик просмотров под авой -->
       <div class="views-counter" title="Всего посещений страницы">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -984,18 +992,11 @@
   <div class="toast" id="toast">Ссылка скопирована в буфер!</div>
 
   <script>
-    // 1. ИНТЕРАКТИВНЫЕ ЧАСТИЦЫ НА ФОНЕ
+    // 1. ЛЕГКИЙ И ОПТИМИЗИРОВАННЫЙ СНЕГОПАД (БЕЗ ФИЗИКИ И КАСАНИЙ)
     const bgCanvas = document.getElementById('bg-canvas');
     const bgCtx = bgCanvas.getContext('2d');
     let width, height;
-    let particles = [];
-    let mouse = { x: null, y: null, radius: 90 };
-
-    window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }
-    });
-    window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+    let flakes = [];
 
     function resize() {
       width = bgCanvas.width = window.innerWidth;
@@ -1004,67 +1005,51 @@
     window.addEventListener('resize', resize);
     resize();
 
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
+    class Snowflake {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
         this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.45;
-        this.speedY = (Math.random() - 0.5) * 0.45;
-        this.alpha = Math.random() * 0.6 + 0.2;
+        this.y = initial ? Math.random() * height : -10;
+        this.radius = Math.random() * 1.8 + 0.6;
+        this.speedY = Math.random() * 0.7 + 0.35;
+        this.speedX = Math.random() * 0.4 - 0.2;
+        this.alpha = Math.random() * 0.5 + 0.2;
+        this.swing = Math.random() * Math.PI * 2;
+        this.swingSpeed = Math.random() * 0.02 + 0.01;
       }
       update() {
-        if (mouse.x !== null) {
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < mouse.radius) {
-            let force = (mouse.radius - distance) / mouse.radius;
-            this.x -= (dx / distance) * force * 3;
-            this.y -= (dy / distance) * force * 3;
-          }
-        }
-        this.x += this.speedX;
+        this.swing += this.swingSpeed;
+        this.x += Math.sin(this.swing) * 0.35 + this.speedX;
         this.y += this.speedY;
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
+
+        if (this.y > height + 10 || this.x < -10 || this.x > width + 10) {
+          this.reset(false);
+        }
       }
       draw() {
         bgCtx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
         bgCtx.beginPath();
-        bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        bgCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         bgCtx.fill();
       }
     }
 
-    const particleCount = Math.min(Math.floor((width * height) / 9500), 70);
-    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-
-    function animateBg() {
-      bgCtx.clearRect(0, 0, width, height);
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          let dx = particles[i].x - particles[j].x;
-          let dy = particles[i].y - particles[j].y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 75) {
-            let lineAlpha = (1 - dist / 75) * 0.15;
-            bgCtx.strokeStyle = `rgba(168, 85, 247, ${lineAlpha})`;
-            bgCtx.lineWidth = 0.8;
-            bgCtx.beginPath();
-            bgCtx.moveTo(particles[i].x, particles[i].y);
-            bgCtx.lineTo(particles[j].x, particles[j].y);
-            bgCtx.stroke();
-          }
-        }
-      }
-      for (let p of particles) { p.update(); p.draw(); }
-      requestAnimationFrame(animateBg);
+    const totalFlakes = Math.min(Math.floor(width / 16), 55);
+    for (let i = 0; i < totalFlakes; i++) {
+      flakes.push(new Snowflake());
     }
-    animateBg();
+
+    function animateSnow() {
+      bgCtx.clearRect(0, 0, width, height);
+      for (let f of flakes) {
+        f.update();
+        f.draw();
+      }
+      requestAnimationFrame(animateSnow);
+    }
+    animateSnow();
 
     // 2. СЧЕТЧИК ПОСЕЩЕНИЙ
     const counterEl = document.getElementById('hitCount');
