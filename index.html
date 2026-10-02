@@ -1322,8 +1322,8 @@
       document.body.classList.remove('is-playing');
     });
 
-    // 4. ЖЕЛЕЗОБЕТОННАЯ ОТПРАВКА (JSON ДЛЯ ТЕКСТА, FORMDATA ДЛЯ ФОТО)
-    const WORKER_URL = 'https://tg-proxi.arsekshoy00.workers.dev';
+    // 4. ЖЕЛЕЗОБЕТОННАЯ ОТПРАВКА ЧЕРЕЗ СВОЙ ДОМЕН (БЕЗ БЛОКИРОВОК В РФ)
+    const WORKER_URL = 'https://api.linky-messenger.ru';
     const anonModal = document.getElementById('anonModal');
     const openAnonBtn = document.getElementById('openAnonBtn');
     const closeAnonBtn = document.getElementById('closeAnonBtn');
@@ -1444,7 +1444,7 @@
             body: formData
           });
         } 
-        // Если только текст — отправляем железобетонным JSON (работает на любом телефоне)
+        // Если только текст — отправляем надежным JSON
         else {
           res = await fetch(WORKER_URL, {
             method: 'POST',
